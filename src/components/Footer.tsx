@@ -6,8 +6,8 @@ export const Footer: React.FC = () => {
     <footer className="bg-brand-dark text-slate-300 pt-16 pb-24 sm:pb-28 border-t border-emerald-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Main Footer Row: 3 Clean Focused Columns */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
+        {/* Main Footer Row: 2 Clean Focused Columns */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 lg:gap-16">
           
           {/* Column 1: Quick Links */}
           <div className="space-y-4">
@@ -43,34 +43,7 @@ export const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 2: Legal */}
-          <div className="space-y-4">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2.5">
-              Legal & Compliance
-            </h4>
-            <ul className="space-y-2.5 text-sm">
-              <li>
-                <a href="#privacy" className="hover:text-brand-fresh transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a href="#terms" className="hover:text-brand-fresh transition-colors">
-                  Terms & Conditions
-                </a>
-              </li>
-              <li>
-                <a href="#disclaimer" className="hover:text-brand-fresh transition-colors">
-                  Disclaimer
-                </a>
-              </li>
-            </ul>
-            <div className="pt-2 text-xs text-slate-400">
-              <p>Official Portal: <a href="https://moneyplant.in" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-semibold hover:underline">moneyplant.in</a></p>
-            </div>
-          </div>
-
-          {/* Column 3: Contact */}
+          {/* Column 2: Contact */}
           <div className="space-y-4">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2.5">
               Contact
