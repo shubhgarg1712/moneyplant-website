@@ -16,7 +16,7 @@ export const Navbar: React.FC = () => {
   const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
+    { name: 'Our Services', href: '#services' },
     { name: 'Why MoneyPlant', href: '#why-us' },
     { name: 'Resources', href: '#resources' },
     { name: 'Contact', href: '#contact' },
@@ -27,26 +27,31 @@ export const Navbar: React.FC = () => {
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
           ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 py-3' 
-          : 'bg-white py-4 border-b border-slate-100'
+          : 'bg-white py-3.5 border-b border-slate-100'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo & Tagline - Strictly preserves original logo proportions and design */}
-          <a href="#home" className="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-brand-primary rounded-lg">
+          {/* Logo on the left with exact uploaded logo & official brand typography */}
+          <a href="#home" className="flex items-center gap-3.5 group focus:outline-none rounded-lg">
             <img 
-              src="/assets/moneyplant-logo.png" 
-              alt="MoneyPlant - We speak financial fluently" 
-              className="h-10 sm:h-12 w-auto max-w-[240px] sm:max-w-[280px] object-contain transition-transform duration-200 group-hover:scale-[1.01]"
+              src="/assets/moneyplant-logo-symbol.png" 
+              alt="MoneyPlant Official Logo" 
+              className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
               onError={(e) => {
-                // If png is not yet placed, fall back to the vector asset
                 const target = e.currentTarget;
-                if (!target.src.endsWith('moneyplant-logo.svg')) {
-                  target.src = '/assets/moneyplant-logo.svg';
-                }
+                target.src = '/assets/moneyplant-logo.png';
               }}
             />
+            <div className="flex flex-col">
+              <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 leading-tight">
+                MONEY<span className="text-brand-emerald">PLANT</span>
+              </span>
+              <span className="text-[11px] sm:text-xs text-brand-forest font-semibold tracking-wide">
+                “We speak financial fluently”
+              </span>
+            </div>
           </a>
 
           {/* Desktop Navigation Links */}
@@ -55,7 +60,7 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-brand-primary rounded-lg transition-colors hover:bg-slate-50"
+                className="px-3.5 py-2 text-sm font-medium text-slate-700 hover:text-brand-forest rounded-lg transition-colors hover:bg-slate-50"
               >
                 {link.name}
               </a>
@@ -78,7 +83,7 @@ export const Navbar: React.FC = () => {
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="p-2 rounded-lg text-slate-600 hover:text-brand-dark hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-primary"
+              className="p-2 rounded-lg text-slate-600 hover:text-brand-dark hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-brand-emerald"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -89,18 +94,38 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white border-b border-slate-200 px-4 pt-3 pb-6 space-y-2 shadow-lg animate-in fade-in slide-in-from-top-2">
-          {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-brand-primary hover:bg-emerald-50 transition-colors"
-            >
-              {link.name}
-            </a>
-          ))}
-          <div className="pt-3 border-t border-slate-100">
+        <div className="md:hidden bg-white border-b border-slate-200 px-4 pt-4 pb-6 space-y-3 shadow-xl animate-in fade-in slide-in-from-top-2">
+          {/* Mobile brand header inside drawer */}
+          <div className="flex items-center gap-3 pb-3 border-b border-slate-100 px-2">
+            <img 
+              src="/assets/moneyplant-logo-symbol.png" 
+              alt="MoneyPlant" 
+              className="h-10 w-auto object-contain"
+            />
+            <div className="flex flex-col">
+              <span className="font-extrabold text-lg text-slate-900 leading-tight">
+                MONEY<span className="text-brand-emerald">PLANT</span>
+              </span>
+              <span className="text-[10px] text-brand-forest font-semibold">
+                “We speak financial fluently”
+              </span>
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="block px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-brand-forest hover:bg-emerald-50/70 transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+          </div>
+
+          <div className="pt-2 border-t border-slate-100">
             <a
               href="#contact"
               onClick={() => setMobileMenuOpen(false)}

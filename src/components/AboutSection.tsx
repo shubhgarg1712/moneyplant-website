@@ -74,8 +74,12 @@ export const AboutSection: React.FC = () => {
               <div className="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-white/5 blur-xl pointer-events-none"></div>
 
               <div className="space-y-6 relative z-10">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center text-brand-fresh">
-                  <Award className="w-6 h-6" />
+                <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center shadow-md">
+                  <img 
+                    src="/assets/moneyplant-logo-symbol.png" 
+                    alt="MoneyPlant Brand" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
 
                 <h3 className="text-2xl font-bold text-white tracking-tight">

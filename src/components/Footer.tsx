@@ -9,30 +9,36 @@ export const Footer: React.FC = () => {
         {/* Main Footer Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           
-          {/* Large Logo & Tagline - Preserving original logo */}
+          {/* Prominent Logo & Brand Tagline */}
           <div className="lg:col-span-5 space-y-5">
-            <div className="flex items-center gap-3">
-              <img 
-                src="/assets/moneyplant-logo-white.svg" 
-                alt="MoneyPlant - We speak financial fluently" 
-                className="h-12 sm:h-14 w-auto max-w-[280px] sm:max-w-[320px] object-contain"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  target.src = '/assets/moneyplant-logo.svg';
-                }}
-              />
+            <div className="flex items-center gap-3.5">
+              <div className="w-14 h-14 rounded-2xl bg-white p-1.5 flex items-center justify-center shadow-md shrink-0">
+                <img 
+                  src="/assets/moneyplant-logo-symbol.png" 
+                  alt="MoneyPlant Official Logo" 
+                  className="w-full h-full object-contain"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    target.src = '/assets/moneyplant-logo.png';
+                  }}
+                />
+              </div>
+              <div className="flex flex-col">
+                <span className="font-extrabold text-2xl tracking-tight text-white leading-tight">
+                  MONEY<span className="text-brand-fresh">PLANT</span>
+                </span>
+                <span className="text-xs text-brand-fresh font-medium tracking-wide">
+                  “We speak financial fluently”
+                </span>
+              </div>
             </div>
-
-            <p className="text-brand-fresh text-sm font-medium tracking-wide">
-              “We speak financial fluently”
-            </p>
 
             <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
               Providing objective, transparent, and structured guidance for personal and commercial financial requirements across India.
             </p>
 
             {/* Social Icons */}
-            <div className="flex items-center gap-3 pt-2">
+            <div className="flex items-center gap-3 pt-1">
               <a 
                 href="#linkedin" 
                 className="w-9 h-9 rounded-full bg-white/5 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
@@ -66,27 +72,25 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Company</h4>
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Navigation</h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="#home" className="hover:text-brand-fresh transition-colors">Home</a></li>
               <li><a href="#about" className="hover:text-brand-fresh transition-colors">About Us</a></li>
-              <li><a href="#services" className="hover:text-brand-fresh transition-colors">Services</a></li>
-              <li><a href="#why-us" className="hover:text-brand-fresh transition-colors">Why MoneyPlant</a></li>
+              <li><a href="#services" className="hover:text-brand-fresh transition-colors">Our Services</a></li>
               <li><a href="#resources" className="hover:text-brand-fresh transition-colors">Resources</a></li>
               <li><a href="#contact" className="hover:text-brand-fresh transition-colors">Contact</a></li>
             </ul>
           </div>
 
-          {/* Legal Links */}
+          {/* Legal Links & Portal */}
           <div className="lg:col-span-4 space-y-3">
             <h4 className="text-xs font-bold text-white uppercase tracking-wider">Legal & Compliance</h4>
             <ul className="space-y-2.5 text-sm">
               <li><a href="#privacy" className="hover:text-brand-fresh transition-colors">Privacy Policy</a></li>
               <li><a href="#terms" className="hover:text-brand-fresh transition-colors">Terms & Conditions</a></li>
-              <li><a href="#disclaimer" className="hover:text-brand-fresh transition-colors">Regulatory Disclaimer</a></li>
+              <li><a href="#disclaimer" className="hover:text-brand-fresh transition-colors">Disclaimer</a></li>
             </ul>
             <div className="pt-3 text-xs text-slate-400">
-              <p>Official Portal: <span className="text-emerald-400 font-semibold">moneyplant.in</span></p>
+              <p>Official Website: <a href="https://moneyplant.in" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-semibold hover:underline">moneyplant.in</a></p>
             </div>
           </div>
 

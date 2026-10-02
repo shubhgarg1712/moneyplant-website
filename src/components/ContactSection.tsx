@@ -200,9 +200,23 @@ export const ContactSection: React.FC = () => {
             
             {/* Contact Details Card */}
             <div className="bg-white rounded-3xl p-8 border border-slate-200/80 shadow-soft space-y-6">
-              <h3 className="text-xl font-bold text-slate-900">
-                Contact Details
-              </h3>
+              <div className="flex items-center gap-3.5 pb-4 border-b border-slate-100">
+                <div className="w-11 h-11 rounded-xl bg-slate-50 p-1.5 border border-slate-100 flex items-center justify-center shrink-0">
+                  <img 
+                    src="/assets/moneyplant-logo-symbol.png" 
+                    alt="MoneyPlant" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-slate-900 leading-tight">
+                    MoneyPlant Advisory Desk
+                  </h3>
+                  <p className="text-xs text-brand-forest font-semibold mt-0.5">
+                    “We speak financial fluently”
+                  </p>
+                </div>
+              </div>
 
               <div className="space-y-4">
                 <div className="flex items-start gap-4">

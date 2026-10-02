@@ -9,9 +9,17 @@ export const Hero: React.FC = () => {
           
           {/* Left Column: Headline & Messaging */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200/70 text-brand-forest text-xs sm:text-sm font-semibold tracking-wide">
-              <span className="w-2 h-2 rounded-full bg-brand-primary animate-pulse"></span>
-              <span>Objective Financial Consulting & Solutions</span>
+            
+            {/* Brand Identity Badge with Logo */}
+            <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-white border border-emerald-200/90 shadow-sm">
+              <img 
+                src="/assets/moneyplant-logo-symbol.png" 
+                alt="MoneyPlant Brand" 
+                className="w-5 h-5 object-contain"
+              />
+              <span className="text-xs sm:text-sm font-bold text-brand-forest tracking-wide">
+                MONEYPLANT • Objective Financial Guidance
+              </span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-[1.14]">
@@ -23,7 +31,7 @@ export const Hero: React.FC = () => {
             </h1>
 
             <p className="text-lg sm:text-xl text-slate-600 max-w-2xl leading-relaxed font-normal">
-              Simple, transparent and reliable financial solutions designed to help individuals and businesses make more informed financial decisions.
+              Financial solutions designed around your personal and business requirements.
             </p>
 
             {/* Buttons */}
@@ -39,11 +47,11 @@ export const Hero: React.FC = () => {
                 href="#contact"
                 className="inline-flex items-center justify-center gap-2 bg-white text-slate-800 border border-slate-300 px-7 py-3.5 rounded-full text-base font-semibold hover:bg-slate-50 hover:border-slate-400 transition-colors"
               >
-                <span>Talk to an Expert</span>
+                <span>Talk to Our Experts</span>
               </a>
             </div>
 
-            {/* Compliance-safe confidence metrics */}
+            {/* Confidence Metrics */}
             <div className="pt-6 border-t border-slate-200/80 grid grid-cols-3 gap-4">
               <div>
                 <p className="text-2xl sm:text-3xl font-extrabold text-brand-forest">100%</p>
@@ -70,23 +78,27 @@ export const Hero: React.FC = () => {
               {/* Main Financial Analytics Card */}
               <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-premium border border-slate-100 space-y-6">
                 
-                {/* Header */}
+                {/* Header with official logo symbol */}
                 <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-brand-forest font-bold">
-                      <TrendingUp className="w-5 h-5 text-brand-primary" />
+                    <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 shadow-sm">
+                      <img 
+                        src="/assets/moneyplant-logo-symbol.png" 
+                        alt="MoneyPlant" 
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div>
                       <h4 className="text-sm font-bold text-slate-900">Structured Planning</h4>
                       <p className="text-xs text-slate-500">Milestone-driven roadmap</p>
                     </div>
                   </div>
-                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-brand-primary">
+                  <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-brand-forest">
                     Active Advisory
                   </span>
                 </div>
 
-                {/* Abstract Visual SVG Financial Growth Graphic */}
+                {/* Abstract Visual Financial Growth Graphic */}
                 <div className="space-y-3">
                   <div className="flex justify-between items-end text-xs text-slate-500 font-medium">
                     <span>Financial Preparedness</span>
@@ -131,14 +143,18 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Brand Motto Highlight */}
+                {/* Brand Motto Highlight with exact official Logo */}
                 <div className="p-3.5 bg-brand-forest rounded-xl text-white flex items-center justify-between">
                   <div className="space-y-0.5">
                     <p className="text-xs font-semibold text-emerald-200">MoneyPlant Philosophy</p>
                     <p className="text-[11px] text-slate-200">“We speak financial fluently”</p>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-brand-fresh text-xs font-bold">
-                    MP
+                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center p-1">
+                    <img 
+                      src="/assets/moneyplant-logo-symbol.png" 
+                      alt="MP" 
+                      className="w-full h-full object-contain brightness-150"
+                    />
                   </div>
                 </div>
 
@@ -146,7 +162,7 @@ export const Hero: React.FC = () => {
 
               {/* Floating Pill Accent */}
               <div className="hidden sm:flex absolute -bottom-5 -left-6 bg-white p-3.5 rounded-2xl shadow-premium border border-slate-100 items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-emerald-100 text-brand-primary flex items-center justify-center">
+                <div className="w-8 h-8 rounded-full bg-emerald-100 text-brand-forest flex items-center justify-center">
                   <CheckCircle2 className="w-4 h-4" />
                 </div>
                 <div>
