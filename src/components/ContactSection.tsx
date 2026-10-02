@@ -14,12 +14,16 @@ export const ContactSection: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   const services = [
-    'Loans & Credit Solutions',
-    'Business Finance',
-    'Insurance Solutions',
-    'Investment & Wealth Solutions',
-    'Financial Planning',
-    'Mutual Fund Solutions',
+    'Domestic & Foreign Debt Syndication',
+    'Project Finance & Restructuring',
+    'Working Capital',
+    'Loan Against Property (LAP)',
+    'Business Loan',
+    'Home Loan',
+    'Personal Loan',
+    'Car Loan',
+    'Insurance',
+    'Mutual Funds',
     'General Inquiry'
   ];
 
