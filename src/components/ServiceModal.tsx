@@ -6,7 +6,6 @@ import {
   Car, 
   Truck, 
   RotateCcw, 
-  KeyRound, 
   Info,
   Check
 } from 'lucide-react';
@@ -26,13 +25,11 @@ export const ServiceModal: React.FC<Props> = ({ service, onClose }) => {
       case 'Car': return <Car className="w-6 h-6" />;
       case 'Truck': return <Truck className="w-6 h-6" />;
       case 'RotateCcw': return <RotateCcw className="w-6 h-6" />;
-      case 'Key': 
-      case 'KeyRound': return <KeyRound className="w-6 h-6" />;
       default: return <Car className="w-6 h-6" />;
     }
   };
 
-  const defaultCarOptions: CarLoanOption[] = service.carLoanOptions || [
+  const defaultCarOptions: CarLoanOption[] = (service.carLoanOptions || [
     {
       id: 'car-loan-new',
       title: 'Car Loan',
@@ -53,15 +50,8 @@ export const ServiceModal: React.FC<Props> = ({ service, onClose }) => {
       description: 'Financing solutions for eligible pre-owned vehicles, subject to vehicle, borrower and lender eligibility criteria.',
       iconName: 'RotateCcw',
       category: 'Pre-Owned'
-    },
-    {
-      id: 'car-loan-private',
-      title: 'Private Car Loan',
-      description: 'Financing solutions for eligible privately used vehicles, subject to applicable eligibility criteria and lender terms.',
-      iconName: 'Key',
-      category: 'Personal Use'
     }
-  ];
+  ]).filter((opt) => opt.id !== 'car-loan-private');
 
   return (
     <div 
@@ -69,7 +59,7 @@ export const ServiceModal: React.FC<Props> = ({ service, onClose }) => {
       onClick={onClose}
     >
       <div 
-        className={`bg-white rounded-3xl ${isCarLoan ? 'max-w-5xl' : 'max-w-lg'} w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-8 max-h-[92vh] overflow-y-auto`}
+        className={`bg-white rounded-3xl ${isCarLoan ? 'max-w-4xl' : 'max-w-lg'} w-full p-6 sm:p-8 shadow-2xl relative border border-slate-100 my-8 max-h-[92vh] overflow-y-auto`}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
@@ -83,7 +73,7 @@ export const ServiceModal: React.FC<Props> = ({ service, onClose }) => {
 
         {isCarLoan ? (
           /* ==============================================
-             CAR LOAN SELECTION INTERFACE (4 OPTIONS)
+             CAR LOAN SELECTION INTERFACE (3 OPTIONS)
              ============================================== */
           <div className="space-y-6">
             <div>
@@ -98,8 +88,8 @@ export const ServiceModal: React.FC<Props> = ({ service, onClose }) => {
               </p>
             </div>
 
-            {/* 4 Cards: Desktop 4 in 1 row, Tablet 2x2, Mobile clean stacked */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
+            {/* 3 Cards: Desktop 3 in 1 row, Tablet 2-column, Mobile clean stacked */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
               {defaultCarOptions.map((opt) => {
                 const isSelected = selectedCarOption === opt.id;
                 return (

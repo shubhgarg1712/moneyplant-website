@@ -101,10 +101,10 @@ export const Services: React.FC = () => {
     {
       id: 'car-loan',
       title: 'CAR LOAN',
-      shortDesc: 'Financing solutions for eligible new, pre-owned, commercial, and private vehicles, subject to applicable criteria.',
-      fullDesc: 'Customized vehicle financing advisory assisting individuals and enterprises in evaluating options across four distinct categories: new car loans, commercial vehicle loans, used car loans, and private car loans with leading institutional lenders.',
+      shortDesc: 'Financing solutions for eligible new, pre-owned, and commercial vehicles, subject to applicable criteria.',
+      fullDesc: 'Customized vehicle financing advisory assisting individuals and enterprises in evaluating options across three distinct categories: new car loans, commercial vehicle loans, and used car loans with leading institutional lenders.',
       keyFeatures: [
-        'Financing solutions for new, commercial, used, and private vehicles',
+        'Financing solutions for new, commercial, and used vehicles',
         'Structured loan tenures and repayment schedule guidance',
         'Guidance on required vehicle documentation, hypothecation, and lender criteria'
       ],
@@ -131,13 +131,6 @@ export const Services: React.FC = () => {
           description: 'Financing solutions for eligible pre-owned vehicles, subject to vehicle, borrower and lender eligibility criteria.',
           iconName: 'RotateCcw',
           category: 'Pre-Owned'
-        },
-        {
-          id: 'car-loan-private',
-          title: 'Private Car Loan',
-          description: 'Financing solutions for eligible privately used vehicles, subject to applicable eligibility criteria and lender terms.',
-          iconName: 'Key',
-          category: 'Personal Use'
         }
       ]
     }
