@@ -53,8 +53,21 @@
   animation-play-state: paused;
 }
 
+/* Small Bottom Bank Marquee */
+.animate-bottom-marquee {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-bottom-marquee:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee-track {
+  .animate-marquee-track,
+  .animate-bottom-marquee {
     animation-duration: 90s;
   }
 }

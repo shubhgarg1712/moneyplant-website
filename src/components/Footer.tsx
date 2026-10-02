@@ -3,7 +3,7 @@ import { Phone, Mail, Globe, ShieldAlert } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-brand-dark text-slate-300 pt-16 pb-12 border-t border-emerald-950">
+    <footer className="bg-brand-dark text-slate-300 pt-16 pb-24 sm:pb-28 border-t border-emerald-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         {/* Main Footer Row: 3 Clean Focused Columns */}

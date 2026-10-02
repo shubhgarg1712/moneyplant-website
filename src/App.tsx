@@ -12,6 +12,7 @@ import { FaqSection } from './components/FaqSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
+import { BottomBankMarquee } from './components/BottomBankMarquee';
 
 export function App() {
   return (
@@ -31,6 +32,7 @@ export function App() {
         <ContactSection />
       </main>
       <Footer />
+      <BottomBankMarquee />
       <WhatsAppButton />
     </div>
   );

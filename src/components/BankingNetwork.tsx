@@ -12,7 +12,7 @@ import bobLogo from '../assets/bank-bob.png';
 import canaraLogo from '../assets/bank-canara.jpg';
 import iciciLogo from '../assets/bank-icici.jpg';
 
-interface BankItem {
+export interface BankItem {
   id: string;
   name: string;
   category: string;
@@ -32,7 +32,7 @@ interface BankItem {
 // 9. Bank of Baroda
 // 10. Canara Bank
 // 11. ICICI Bank
-const banksList: BankItem[] = [
+export const banksList: BankItem[] = [
   {
     id: 'sbi',
     name: 'State Bank of India',
