@@ -5,6 +5,9 @@ on:
     branches:
       - master
   workflow_dispatch:
+  schedule:
+    # Automatically fetch fresh RBI rates in the cloud every 6 hours (no laptop required)
+    - cron: '0 */6 * * *'
 
 permissions:
   contents: read

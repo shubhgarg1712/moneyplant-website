@@ -1,24 +1,37 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 
-interface RatesData {
+interface RatesResponse {
+  success: boolean;
   repoRate: string | null;
   mclrOvernight: string | null;
   rate?: string | null;
-  name: string;
+  lastUpdated: string;
   source: string;
   sourceUrl: string;
   asOn?: string | null;
-  updatedAt: string;
   stale?: boolean;
   error?: string;
 }
 
-let inMemoryCache: { data: RatesData; timestamp: number } | null = null;
+let inMemoryCache: { data: RatesResponse; timestamp: number } | null = null;
 const CACHE_TTL_MS = 60 * 60 * 1000; // 1 hour cache
 const RBI_URL = 'https://m.rbi.org.in/scripts/bs_viewcontent.aspx?Id=426';
 
+const ALLOWED_ORIGINS = [
+  'https://shubhgarg1712.github.io',
+  'https://moneyplant.in',
+  'https://www.moneyplant.in'
+];
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS configuration
+  const origin = req.headers.origin || '';
+  if (ALLOWED_ORIGINS.includes(origin) || origin.endsWith('.github.io') || origin.endsWith('.vercel.app')) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  } else {
+    res.setHeader('Access-Control-Allow-Origin', 'https://shubhgarg1712.github.io');
+  }
+
   res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600, stale-while-revalidate=86400');
@@ -33,7 +46,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const now = Date.now();
 
-  // Return fresh cached data if within 1 hour
+  // Return cached data if fresh (within 1 hour)
   if (inMemoryCache && now - inMemoryCache.timestamp < CACHE_TTL_MS) {
     return res.status(200).json(inMemoryCache.data);
   }
@@ -69,15 +82,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       throw new Error('Could not parse Repo Rate or MCLR from RBI page');
     }
 
-    const freshData: RatesData = {
+    const freshData: RatesResponse = {
+      success: true,
       repoRate,
       mclrOvernight,
       rate: repoRate,
-      name: 'RBI Current Rates',
+      lastUpdated: new Date().toISOString(),
       source: 'Reserve Bank of India',
       sourceUrl: RBI_URL,
-      asOn: dateMatch ? dateMatch[1].trim() : null,
-      updatedAt: new Date().toISOString()
+      asOn: dateMatch ? dateMatch[1].trim() : null
     };
 
     inMemoryCache = { data: freshData, timestamp: now };
@@ -93,14 +106,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     return res.status(503).json({
+      success: false,
       repoRate: null,
       mclrOvernight: null,
       rate: null,
-      name: 'RBI Current Rates',
+      lastUpdated: new Date().toISOString(),
       source: 'Reserve Bank of India',
       sourceUrl: RBI_URL,
-      error: 'Currently unavailable',
-      updatedAt: new Date().toISOString()
+      error: 'Rates temporarily unavailable'
     });
   }
 }
