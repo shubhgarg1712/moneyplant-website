@@ -45,10 +45,11 @@ export const Navbar: React.FC = () => {
               }}
             />
             <div className="flex flex-col">
-              <span className="font-extrabold text-xl sm:text-2xl tracking-tight text-slate-900 leading-tight">
-                MONEY<span className="text-brand-emerald">PLANT</span>
+              <span className="font-extrabold text-xl sm:text-[23px] tracking-tight leading-none flex items-center">
+                <span className="text-[#1E3F0A]">MONEY</span>
+                <span className="text-[#527E24]">PLANT</span>
               </span>
-              <span className="text-[11px] sm:text-xs text-brand-forest font-semibold tracking-wide">
+              <span className="text-[11px] sm:text-xs text-slate-800 font-semibold tracking-normal mt-1">
                 “We speak financial fluently”
               </span>
             </div>
@@ -103,10 +104,11 @@ export const Navbar: React.FC = () => {
               className="h-10 w-auto object-contain"
             />
             <div className="flex flex-col">
-              <span className="font-extrabold text-lg text-slate-900 leading-tight">
-                MONEY<span className="text-brand-emerald">PLANT</span>
+              <span className="font-extrabold text-lg tracking-tight leading-none flex items-center">
+                <span className="text-[#1E3F0A]">MONEY</span>
+                <span className="text-[#527E24]">PLANT</span>
               </span>
-              <span className="text-[10px] text-brand-forest font-semibold">
+              <span className="text-[10px] text-slate-800 font-semibold mt-1">
                 “We speak financial fluently”
               </span>
             </div>

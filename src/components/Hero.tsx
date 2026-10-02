@@ -17,8 +17,8 @@ export const Hero: React.FC = () => {
                 alt="MoneyPlant Brand" 
                 className="w-5 h-5 object-contain"
               />
-              <span className="text-xs sm:text-sm font-bold text-brand-forest tracking-wide">
-                MONEYPLANT • Objective Financial Guidance
+              <span className="text-xs sm:text-sm font-extrabold tracking-wide">
+                <span className="text-[#1E3F0A]">MONEY</span><span className="text-[#527E24]">PLANT</span> <span className="text-slate-600 font-medium">• Objective Financial Guidance</span>
               </span>
             </div>
 
