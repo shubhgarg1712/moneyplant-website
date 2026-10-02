@@ -1,98 +1,103 @@
 import React from 'react';
-import { Linkedin, Instagram, Facebook, Youtube, ShieldAlert } from 'lucide-react';
+import { Phone, Mail, MapPin, Globe, ShieldAlert } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-brand-dark text-slate-300 pt-16 pb-12 border-t border-emerald-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
-        {/* Main Footer Row */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
+        {/* Main Footer Row: 3 Clean Focused Columns */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12">
           
-          {/* Prominent Logo & Brand Tagline - Consistent with Header */}
-          <div className="lg:col-span-5 space-y-5">
-            <div className="flex items-center gap-3.5">
-              <div className="w-12 sm:w-13 h-12 sm:h-13 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md shrink-0">
-                <img 
-                  src="/assets/moneyplant-logo-symbol.png" 
-                  alt="MoneyPlant Official Logo" 
-                  className="w-full h-full object-contain"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    target.src = '/assets/moneyplant-logo.png';
-                  }}
-                />
-              </div>
-              <div className="flex flex-col">
-                <span className="font-extrabold text-xl sm:text-[23px] tracking-tight leading-none flex items-center">
-                  <span className="text-[#8BBF46]">MONEY</span>
-                  <span className="text-[#34D399]">PLANT</span>
-                </span>
-                <span className="text-[11px] sm:text-xs text-[#86EFAC] font-semibold tracking-normal mt-1">
-                  “We speak financial fluently”
-                </span>
-              </div>
-            </div>
-
-            <p className="text-slate-400 text-xs sm:text-sm leading-relaxed max-w-sm">
-              Providing objective, transparent, and structured guidance for personal and commercial financial requirements across India.
-            </p>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 pt-1">
-              <a 
-                href="#linkedin" 
-                className="w-9 h-9 rounded-full bg-white/5 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-4 h-4" />
-              </a>
-              <a 
-                href="#instagram" 
-                className="w-9 h-9 rounded-full bg-white/5 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-                aria-label="Instagram"
-              >
-                <Instagram className="w-4 h-4" />
-              </a>
-              <a 
-                href="#facebook" 
-                className="w-9 h-9 rounded-full bg-white/5 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-4 h-4" />
-              </a>
-              <a 
-                href="#youtube" 
-                className="w-9 h-9 rounded-full bg-white/5 hover:bg-emerald-600 flex items-center justify-center text-slate-300 hover:text-white transition-colors"
-                aria-label="YouTube"
-              >
-                <Youtube className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Quick Links */}
-          <div className="lg:col-span-3 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Navigation</h4>
+          {/* Column 1: Quick Links */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2.5">
+              Quick Links
+            </h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="#about" className="hover:text-brand-fresh transition-colors">About Us</a></li>
-              <li><a href="#services" className="hover:text-brand-fresh transition-colors">Our Services</a></li>
-              <li><a href="#resources" className="hover:text-brand-fresh transition-colors">Resources</a></li>
-              <li><a href="#contact" className="hover:text-brand-fresh transition-colors">Contact</a></li>
+              <li>
+                <a href="#home" className="hover:text-brand-fresh transition-colors">
+                  Home
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="hover:text-brand-fresh transition-colors">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a href="#services" className="hover:text-brand-fresh transition-colors">
+                  Our Services
+                </a>
+              </li>
+              <li>
+                <a href="#resources" className="hover:text-brand-fresh transition-colors">
+                  Resources
+                </a>
+              </li>
+              <li>
+                <a href="#contact" className="hover:text-brand-fresh transition-colors">
+                  Contact
+                </a>
+              </li>
             </ul>
           </div>
 
-          {/* Legal Links & Portal */}
-          <div className="lg:col-span-4 space-y-3">
-            <h4 className="text-xs font-bold text-white uppercase tracking-wider">Legal & Compliance</h4>
+          {/* Column 2: Legal */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2.5">
+              Legal & Compliance
+            </h4>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="#privacy" className="hover:text-brand-fresh transition-colors">Privacy Policy</a></li>
-              <li><a href="#terms" className="hover:text-brand-fresh transition-colors">Terms & Conditions</a></li>
-              <li><a href="#disclaimer" className="hover:text-brand-fresh transition-colors">Disclaimer</a></li>
+              <li>
+                <a href="#privacy" className="hover:text-brand-fresh transition-colors">
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a href="#terms" className="hover:text-brand-fresh transition-colors">
+                  Terms & Conditions
+                </a>
+              </li>
+              <li>
+                <a href="#disclaimer" className="hover:text-brand-fresh transition-colors">
+                  Disclaimer
+                </a>
+              </li>
             </ul>
-            <div className="pt-3 text-xs text-slate-400">
-              <p>Official Website: <a href="https://moneyplant.in" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-semibold hover:underline">moneyplant.in</a></p>
+            <div className="pt-2 text-xs text-slate-400">
+              <p>Official Portal: <a href="https://moneyplant.in" target="_blank" rel="noopener noreferrer" className="text-emerald-400 font-semibold hover:underline">moneyplant.in</a></p>
             </div>
+          </div>
+
+          {/* Column 3: Contact */}
+          <div className="space-y-4">
+            <h4 className="text-xs font-bold text-white uppercase tracking-wider border-b border-white/10 pb-2.5">
+              Contact
+            </h4>
+            <ul className="space-y-3 text-sm text-slate-300">
+              <li className="flex items-start gap-3">
+                <Phone className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-xs text-slate-400 block">Phone</span>
+                  <span className="text-slate-200 font-medium">[ADD PHONE NUMBER]</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-xs text-slate-400 block">Email</span>
+                  <span className="text-slate-200 font-medium">[ADD EMAIL]</span>
+                </div>
+              </li>
+              <li className="flex items-start gap-3">
+                <MapPin className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-xs text-slate-400 block">Office Address</span>
+                  <span className="text-slate-200 font-medium">[ADD OFFICE ADDRESS]</span>
+                </div>
+              </li>
+            </ul>
           </div>
 
         </div>
@@ -110,7 +115,7 @@ export const Footer: React.FC = () => {
         {/* Copyright */}
         <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
           <p>© 2026 MoneyPlant. All Rights Reserved.</p>
-          <p className="text-slate-400">“We speak financial fluently”</p>
+          <p className="text-slate-400">moneyplant.in</p>
         </div>
 
       </div>

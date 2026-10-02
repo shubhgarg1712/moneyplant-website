@@ -10,6 +10,7 @@ import { FinancialEducation } from './components/FinancialEducation';
 import { FaqSection } from './components/FaqSection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
+import { WhatsAppButton } from './components/WhatsAppButton';
 
 export function App() {
   return (
@@ -28,6 +29,7 @@ export function App() {
         <ContactSection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 }
