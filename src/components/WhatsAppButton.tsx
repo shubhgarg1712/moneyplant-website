@@ -11,6 +11,18 @@ export const WHATSAPP_DEFAULT_MESSAGE = WHATSAPP_PREFILLED_TEXT;
 // Exact requested direct WhatsApp URL
 export const WHATSAPP_DIRECT_URL = "https://wa.me/918178419058?text=Hello%20MoneyPlant,%20I%20would%20like%20to%20know%20more%20about%20your%20financial%20services.";
 
+// Sharp, high-resolution official vector WhatsApp icon (Simple Icons standard path)
+const WhatsAppIcon: React.FC<{ className?: string }> = ({ className = "w-6 h-6" }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="currentColor"
+    aria-hidden="true"
+    className={className}
+  >
+    <path d="M17.472 14.382c-.301-.15-1.78-.879-2.056-.98-.276-.101-.477-.15-.678.15-.2.302-.779.98-1.028 1.206-.25.226-.452.251-.753.1-.301-.15-1.272-.469-2.423-1.496-.897-.8-1.503-1.789-1.679-2.09-.176-.302-.019-.465.132-.615.136-.135.301-.352.451-.528.151-.176.201-.302.302-.503.1-.201.05-.377-.025-.528-.075-.151-.678-1.633-.929-2.236-.245-.588-.493-.508-.678-.518-.176-.01-.377-.01-.578-.01-.201 0-.527.076-.803.377-.276.302-1.054 1.03-1.054 2.512 0 1.482 1.079 2.914 1.23 3.115.15.201 2.124 3.243 5.145 4.545.719.31 1.28.495 1.718.634.723.23 1.381.197 1.901.12.579-.087 1.78-.728 2.032-1.432.252-.704.252-1.307.176-1.432-.076-.126-.276-.202-.577-.352zm-5.467 6.43c-1.921 0-3.805-.516-5.454-1.493l-.391-.233-4.053 1.063 1.082-3.952-.256-.407a10.97 10.97 0 0 1-1.684-5.836c0-6.079 4.945-11.024 11.026-11.024 2.946 0 5.716 1.148 7.798 3.231 2.083 2.083 3.23 4.853 3.23 7.8 0 6.08-4.946 11.024-11.027 11.024zm8.683-19.708A12.28 12.28 0 0 0 12.005 0C5.385 0 .002 5.383 0 12.004c0 2.115.553 4.179 1.602 6.001L0 24l6.143-1.611A12.25 12.25 0 0 0 12.005 24c6.621 0 12.004-5.383 12.004-12.004 0-3.21-1.249-6.227-3.52-8.502z" />
+  </svg>
+);
+
 export const WhatsAppButton: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
@@ -45,23 +57,23 @@ export const WhatsAppButton: React.FC = () => {
       ref={widgetRef}
       className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-none"
     >
-      {/* 2 & 3. WhatsApp Business Chat Popup */}
+      {/* WhatsApp "Chat with us" Popup */}
       {isOpen && (
         <div 
           role="dialog"
           aria-labelledby="whatsapp-chat-title"
-          className="pointer-events-auto mb-3 sm:mb-4 w-[360px] max-w-[calc(100vw-32px)] bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden transform animate-in fade-in slide-in-from-bottom-4 duration-200"
+          className="pointer-events-auto mb-3 sm:mb-4 w-[360px] max-w-[calc(100vw-32px)] bg-white rounded-2xl sm:rounded-3xl shadow-2xl border border-slate-200/90 overflow-hidden transform transition-all duration-200"
         >
           {/* Header */}
-          <div className="bg-white px-5 pt-4 pb-3 border-b border-slate-100 flex items-center justify-between gap-3">
+          <div className="bg-[#1E3F0A] text-white px-5 py-4 border-b border-[#2d5c12] flex items-center justify-between gap-3 shadow-sm">
             <div className="flex items-center gap-3 min-w-0">
               {/* MoneyPlant Logo */}
-              <div className="w-10 h-10 rounded-xl bg-slate-50 p-1 border border-slate-100 flex items-center justify-center shrink-0">
+              <div className="w-10 h-10 rounded-full bg-white p-1 flex items-center justify-center shrink-0 shadow-sm border border-white/20">
                 <img 
                   src={moneyPlantLogoSymbol} 
                   alt="MoneyPlant Official Logo" 
-                  width={40}
-                  height={40}
+                  width={36}
+                  height={36}
                   className="w-full h-full object-contain"
                   onError={(e) => {
                     const target = e.currentTarget;
@@ -70,42 +82,38 @@ export const WhatsAppButton: React.FC = () => {
                 />
               </div>
 
-              {/* Brand Name & Tagline */}
+              {/* Title & Brand */}
               <div className="flex flex-col min-w-0">
-                <div id="whatsapp-chat-title" className="font-extrabold text-base tracking-tight leading-none flex items-center">
-                  <span className="text-[#1E3F0A]">MONEY</span>
-                  <span className="text-[#527E24]">PLANT</span>
+                <div className="flex items-center gap-2">
+                  <h3 id="whatsapp-chat-title" className="font-bold text-base text-white leading-tight truncate">
+                    Chat with us
+                  </h3>
+                  <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0" title="Online" />
                 </div>
-                <div className="text-[11px] text-slate-800 font-semibold tracking-normal mt-0.5 truncate">
-                  “We speak financial fluently”
+                <div className="text-xs text-white/85 font-medium truncate mt-0.5">
+                  MoneyPlant Finserve
                 </div>
               </div>
             </div>
 
             {/* Close Button "×" */}
             <button
+              type="button"
               onClick={() => setIsOpen(false)}
-              aria-label="Close chat"
-              className="w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-slate-300"
+              aria-label="Close"
+              className="w-8 h-8 rounded-full text-white/80 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-white/40"
             >
-              <X className="w-4 h-4" />
+              <X className="w-5 h-5" />
             </button>
           </div>
 
-          {/* Status Below Header: "Typically replies within a day" */}
-          <div className="px-5 py-2.5 bg-slate-50 border-b border-slate-100/90 flex items-center gap-2">
-            <span className="w-2 h-2 rounded-full bg-[#25D366] animate-pulse shrink-0"></span>
-            <span className="text-xs text-slate-600 font-medium">
-              Typically replies within a day
-            </span>
-          </div>
-
-          {/* 4. Chat Message Bubble Area */}
-          <div className="p-4 sm:p-5 bg-[#efeae2]/40 min-h-[145px] flex flex-col justify-center">
-            <div className="bg-white rounded-2xl rounded-tl-xs p-4 shadow-sm border border-slate-200/70 max-w-[92%] relative">
+          {/* Chat Message Bubble Area */}
+          <div className="p-4 sm:p-5 bg-[#efeae2]/45 min-h-[140px] flex flex-col justify-center">
+            <div className="bg-white rounded-2xl rounded-tl-sm p-4 shadow-sm border border-slate-200/80 max-w-[92%] relative">
               {/* Sender Name */}
-              <p className="text-[11px] font-bold text-[#1E3F0A] uppercase tracking-wider mb-1">
-                MONEYPLANT
+              <p className="text-[11px] font-bold text-[#1E3F0A] uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                <span>MONEYPLANT</span>
+                <span className="text-[10px] font-normal text-slate-400">· Official</span>
               </p>
               
               {/* Message Content */}
@@ -114,14 +122,14 @@ export const WhatsAppButton: React.FC = () => {
                 How can we help you?
               </p>
 
-              {/* Message Timestamp */}
+              {/* Timestamp */}
               <div className="text-[10px] text-slate-400 text-right mt-1.5 font-medium">
                 Just now
               </div>
             </div>
           </div>
 
-          {/* 5. Start Chat Button */}
+          {/* Start Chat Button Area */}
           <div className="p-4 sm:p-5 bg-white border-t border-slate-100">
             <a
               href={WHATSAPP_DIRECT_URL}
@@ -129,38 +137,23 @@ export const WhatsAppButton: React.FC = () => {
               rel="noopener noreferrer"
               className="w-full py-3.5 px-5 rounded-xl bg-[#25D366] hover:bg-[#20bd5a] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-[#25D366]/30"
             >
-              {/* WhatsApp Icon */}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                className="w-5 h-5 shrink-0"
-              >
-                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.204 8.204 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.187 8.187 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.8 11.66c-.2-.1-.18-.09-1.17-.58-.99-.49-1.15-.55-1.3-.32-.15.22-.59.73-.72.88-.13.15-.26.17-.46.07-.2-.1-.85-.31-1.62-.99-.6-.54-1-1.2-1.12-1.4-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.46-1.11-.63-1.52-.17-.4-.34-.35-.46-.35-.12 0-.26-.01-.4-.01s-.36.05-.55.26c-.19.21-.72.71-.72 1.72s.74 2 0 .84 2.13 1.83 3.51 2.43.76.32 1.05.3.62-.03.88-.34.39-.77.44-.88c.05-.12.05-.22-.05-.27z"/>
-              </svg>
+              <WhatsAppIcon className="w-5 h-5 shrink-0" />
               <span>Start Chat</span>
             </a>
           </div>
         </div>
       )}
 
-      {/* 1. Floating Circular WhatsApp Launcher Button */}
+      {/* Floating Circular WhatsApp Launcher Button */}
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        aria-label={isOpen ? "Close WhatsApp chat" : "Open WhatsApp chat"}
+        aria-label={isOpen ? "Close WhatsApp chat" : "Chat on WhatsApp with MoneyPlant"}
         aria-expanded={isOpen}
-        className="pointer-events-auto w-[52px] h-[52px] sm:w-[58px] sm:h-[58px] rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
+        className="pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#25D366] hover:bg-[#20bd5a] text-white flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-[#25D366]/40"
       >
         {/* Authentic White WhatsApp Icon */}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="w-7 h-7 sm:w-8 sm:h-8 transition-transform group-hover:rotate-6"
-        >
-          <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.204 8.204 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.187 8.187 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24zm4.8 11.66c-.2-.1-.18-.09-1.17-.58-.99-.49-1.15-.55-1.3-.32-.15.22-.59.73-.72.88-.13.15-.26.17-.46.07-.2-.1-.85-.31-1.62-.99-.6-.54-1-1.2-1.12-1.4-.12-.2-.01-.31.09-.41.09-.09.2-.23.3-.35.1-.12.13-.2.2-.33.07-.13.03-.25-.02-.35-.05-.1-.46-1.11-.63-1.52-.17-.4-.34-.35-.46-.35-.12 0-.26-.01-.4-.01s-.36.05-.55.26c-.19.21-.72.71-.72 1.72s.74 2 0 .84 2.13 1.83 3.51 2.43.76.32 1.05.3.62-.03.88-.34.39-.77.44-.88c.05-.12.05-.22-.05-.27z"/>
-        </svg>
+        <WhatsAppIcon className="w-8 h-8 sm:w-9 sm:h-9 text-white transition-transform group-hover:rotate-6" />
       </button>
     </div>
   );
