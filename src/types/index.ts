@@ -1,3 +1,11 @@
+export interface CarLoanOption {
+  id: string;
+  title: string;
+  description: string;
+  iconName: string;
+  category: string;
+}
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -6,6 +14,7 @@ export interface ServiceItem {
   keyFeatures: string[];
   iconName: string;
   badge: string;
+  carLoanOptions?: CarLoanOption[];
 }
 
 export interface ResourceItem {

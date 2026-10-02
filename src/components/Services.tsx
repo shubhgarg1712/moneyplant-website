@@ -6,6 +6,7 @@ import {
   Landmark, 
   Briefcase, 
   Wallet, 
+  Car,
   ArrowRight,
   Info
 } from 'lucide-react';
@@ -96,6 +97,49 @@ export const Services: React.FC = () => {
       ],
       iconName: 'Wallet',
       badge: 'Personal Credit'
+    },
+    {
+      id: 'car-loan',
+      title: 'CAR LOAN',
+      shortDesc: 'Financing solutions for eligible new, pre-owned, commercial, and private vehicles, subject to applicable criteria.',
+      fullDesc: 'Customized vehicle financing advisory assisting individuals and enterprises in evaluating options across four distinct categories: new car loans, commercial vehicle loans, used car loans, and private car loans with leading institutional lenders.',
+      keyFeatures: [
+        'Financing solutions for new, commercial, used, and private vehicles',
+        'Structured loan tenures and repayment schedule guidance',
+        'Guidance on required vehicle documentation, hypothecation, and lender criteria'
+      ],
+      iconName: 'Car',
+      badge: 'Vehicle Finance',
+      carLoanOptions: [
+        {
+          id: 'car-loan-new',
+          title: 'Car Loan',
+          description: 'Financing solutions for eligible new vehicle purchases, subject to applicable eligibility criteria and lender terms.',
+          iconName: 'Car',
+          category: 'New Vehicles'
+        },
+        {
+          id: 'car-loan-commercial',
+          title: 'Commercial Car Loan',
+          description: 'Financing solutions for eligible commercial vehicles used for business or professional purposes, subject to applicable lender terms.',
+          iconName: 'Truck',
+          category: 'Commercial Use'
+        },
+        {
+          id: 'car-loan-used',
+          title: 'Used Car Loan',
+          description: 'Financing solutions for eligible pre-owned vehicles, subject to vehicle, borrower and lender eligibility criteria.',
+          iconName: 'RotateCcw',
+          category: 'Pre-Owned'
+        },
+        {
+          id: 'car-loan-private',
+          title: 'Private Car Loan',
+          description: 'Financing solutions for eligible privately used vehicles, subject to applicable eligibility criteria and lender terms.',
+          iconName: 'Key',
+          category: 'Personal Use'
+        }
+      ]
     }
   ];
 
@@ -107,6 +151,7 @@ export const Services: React.FC = () => {
       case 'Landmark': return <Landmark className="w-6 h-6" />;
       case 'Briefcase': return <Briefcase className="w-6 h-6" />;
       case 'Wallet': return <Wallet className="w-6 h-6" />;
+      case 'Car': return <Car className="w-6 h-6" />;
       default: return <Info className="w-6 h-6" />;
     }
   };
@@ -128,8 +173,8 @@ export const Services: React.FC = () => {
           </p>
         </div>
 
-        {/* 6 Services Grid: 
-            Desktop: 3 cards per row (Row 1: Home Loan | LAP | Working Capital; Row 2: CGTMSE | Business Loan | Personal Loan)
+        {/* Services Grid: 
+            Desktop: 3 cards per row
             Tablet: 2 cards per row
             Mobile: 1 card per row
         */}
@@ -137,7 +182,8 @@ export const Services: React.FC = () => {
           {servicesList.map((service) => (
             <div
               key={service.id}
-              className="bg-white rounded-2xl p-7 border border-slate-200/90 shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1"
+              onClick={() => setSelectedService(service)}
+              className="bg-white rounded-2xl p-7 border border-slate-200/90 shadow-soft hover:shadow-premium transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1 cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between mb-5">

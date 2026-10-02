@@ -25,6 +25,7 @@ export const ContactSection: React.FC = () => {
     'CGTMSE (Govt. Scheme)',
     'Business Loan',
     'Personal Loan',
+    'Car Loan',
     'General Inquiry'
   ];
 

@@ -6,6 +6,7 @@ import { WhyMoneyPlant } from './components/WhyMoneyPlant';
 import { HowItWorks } from './components/HowItWorks';
 import { AboutSection } from './components/AboutSection';
 import { FinancialCalculators } from './components/FinancialCalculators';
+import { BankingNetwork } from './components/BankingNetwork';
 import { FinancialEducation } from './components/FinancialEducation';
 import { FaqSection } from './components/FaqSection';
 import { ContactSection } from './components/ContactSection';
@@ -24,6 +25,7 @@ export function App() {
         <HowItWorks />
         <AboutSection />
         <FinancialCalculators />
+        <BankingNetwork />
         <FinancialEducation />
         <FaqSection />
         <ContactSection />
