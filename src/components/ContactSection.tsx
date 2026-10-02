@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Globe, CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
+import { CustomSelect } from './CustomSelect';
 
 export const TARGET_EMAIL = "info.mpfinserve@gmail.com";
 
@@ -266,27 +267,21 @@ export const ContactSection: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Service Required Field */}
-                <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
-                    Service Required <span className="text-red-500">*</span>
-                  </label>
-                  <select
-                    value={formData.service}
-                    onChange={(e) => {
-                      setFormData({ ...formData, service: e.target.value });
-                      if (validationErrors.service) setValidationErrors({ ...validationErrors, service: '' });
-                    }}
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-brand-primary"
-                  >
-                    {services.map((srv) => (
-                      <option key={srv} value={srv}>{srv}</option>
-                    ))}
-                  </select>
-                  {validationErrors.service && (
-                    <p className="text-xs text-red-600 mt-1">{validationErrors.service}</p>
-                  )}
-                </div>
+                {/* Service Required Field (Custom MoneyPlant Styled Dropdown) */}
+                <CustomSelect
+                  id="service-required"
+                  label="Service Required"
+                  required
+                  value={formData.service}
+                  options={services}
+                  onChange={(selectedService) => {
+                    setFormData({ ...formData, service: selectedService });
+                    if (validationErrors.service) {
+                      setValidationErrors({ ...validationErrors, service: '' });
+                    }
+                  }}
+                  error={validationErrors.service}
+                />
 
                 {/* Message Field */}
                 <div>
