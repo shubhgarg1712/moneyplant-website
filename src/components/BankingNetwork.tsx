@@ -8,8 +8,9 @@ import boiLogo from '../assets/bank-boi.png';
 import indianLogo from '../assets/bank-indian.jpg';
 import centralLogo from '../assets/bank-central.webp';
 import pnbLogo from '../assets/bank-pnb.jpg';
-import bobLogo from '../assets/bank-bob.svg';
-import canaraLogo from '../assets/bank-canara.svg';
+import bobLogo from '../assets/bank-bob.png';
+import canaraLogo from '../assets/bank-canara.jpg';
+import iciciLogo from '../assets/bank-icici.jpg';
 
 interface BankItem {
   id: string;
@@ -19,7 +20,7 @@ interface BankItem {
   alt: string;
 }
 
-// Exactly 10 unique banks in the requested sequential order:
+// Exactly 11 unique banks in the requested sequential order:
 // 1. State Bank of India (SBI)
 // 2. HDFC Bank
 // 3. Axis Bank
@@ -30,6 +31,7 @@ interface BankItem {
 // 8. Punjab National Bank (PNB)
 // 9. Bank of Baroda
 // 10. Canara Bank
+// 11. ICICI Bank
 const banksList: BankItem[] = [
   {
     id: 'sbi',
@@ -100,11 +102,18 @@ const banksList: BankItem[] = [
     category: 'Public Sector Bank',
     logo: canaraLogo,
     alt: 'Canara Bank Official Logo'
+  },
+  {
+    id: 'icici',
+    name: 'ICICI Bank',
+    category: 'Private Sector Bank',
+    logo: iciciLogo,
+    alt: 'ICICI Bank Official Logo'
   }
 ];
 
 export const BankingNetwork: React.FC = () => {
-  // Duplicate the complete 10-bank list once for a 100% seamless, uninterrupted infinite CSS marquee loop
+  // Duplicate the complete 11-bank list once for a 100% seamless, uninterrupted infinite CSS marquee loop
   const marqueeItems = [...banksList, ...banksList];
 
   return (
@@ -135,7 +144,7 @@ export const BankingNetwork: React.FC = () => {
         {/* Right Gradient Fade */}
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-slate-50/90 via-slate-50/40 to-transparent z-10 pointer-events-none" />
 
-        {/* Continuous Looping Marquee Track showing all 10 banks */}
+        {/* Continuous Looping Marquee Track showing all 11 banks */}
         <div className="animate-marquee-track flex gap-4 sm:gap-6 px-4">
           {marqueeItems.map((bank, index) => (
             <div
