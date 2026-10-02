@@ -3,6 +3,13 @@ import { Landmark, Info } from 'lucide-react';
 import sbiLogo from '../assets/bank-sbi.png';
 import hdfcLogo from '../assets/bank-hdfc.png';
 import axisLogo from '../assets/bank-axis.png';
+import unionLogo from '../assets/bank-union.png';
+import boiLogo from '../assets/bank-boi.png';
+import indianLogo from '../assets/bank-indian.jpg';
+import centralLogo from '../assets/bank-central.webp';
+import pnbLogo from '../assets/bank-pnb.jpg';
+import bobLogo from '../assets/bank-bob.svg';
+import canaraLogo from '../assets/bank-canara.svg';
 
 interface BankItem {
   id: string;
@@ -12,6 +19,17 @@ interface BankItem {
   alt: string;
 }
 
+// Exactly 10 unique banks in the requested sequential order:
+// 1. State Bank of India (SBI)
+// 2. HDFC Bank
+// 3. Axis Bank
+// 4. Union Bank of India
+// 5. Bank of India
+// 6. Indian Bank
+// 7. Central Bank of India
+// 8. Punjab National Bank (PNB)
+// 9. Bank of Baroda
+// 10. Canara Bank
 const banksList: BankItem[] = [
   {
     id: 'sbi',
@@ -33,14 +51,61 @@ const banksList: BankItem[] = [
     category: 'Private Sector Bank',
     logo: axisLogo,
     alt: 'Axis Bank Official Logo'
+  },
+  {
+    id: 'union',
+    name: 'Union Bank of India',
+    category: 'Public Sector Bank',
+    logo: unionLogo,
+    alt: 'Union Bank of India Official Logo'
+  },
+  {
+    id: 'boi',
+    name: 'Bank of India',
+    category: 'Public Sector Bank',
+    logo: boiLogo,
+    alt: 'Bank of India Official Logo'
+  },
+  {
+    id: 'indian',
+    name: 'Indian Bank',
+    category: 'Public Sector Bank',
+    logo: indianLogo,
+    alt: 'Indian Bank Official Logo'
+  },
+  {
+    id: 'central',
+    name: 'Central Bank of India',
+    category: 'Public Sector Bank',
+    logo: centralLogo,
+    alt: 'Central Bank of India Official Logo'
+  },
+  {
+    id: 'pnb',
+    name: 'Punjab National Bank (PNB)',
+    category: 'Public Sector Bank',
+    logo: pnbLogo,
+    alt: 'Punjab National Bank (PNB) Official Logo'
+  },
+  {
+    id: 'bob',
+    name: 'Bank of Baroda',
+    category: 'Public Sector Bank',
+    logo: bobLogo,
+    alt: 'Bank of Baroda Official Logo'
+  },
+  {
+    id: 'canara',
+    name: 'Canara Bank',
+    category: 'Public Sector Bank',
+    logo: canaraLogo,
+    alt: 'Canara Bank Official Logo'
   }
 ];
 
 export const BankingNetwork: React.FC = () => {
-  // Repeat the 3 banks 4 times per half (12 items per half, 24 items total)
-  // Ensures a continuous, seamless loop across all viewport widths with zero gaps
-  const singleCycle = [...banksList, ...banksList, ...banksList, ...banksList];
-  const marqueeItems = [...singleCycle, ...singleCycle];
+  // Duplicate the complete 10-bank list once for a 100% seamless, uninterrupted infinite CSS marquee loop
+  const marqueeItems = [...banksList, ...banksList];
 
   return (
     <section className="py-20 sm:py-24 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden">
@@ -70,7 +135,7 @@ export const BankingNetwork: React.FC = () => {
         {/* Right Gradient Fade */}
         <div className="absolute right-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-l from-slate-50/90 via-slate-50/40 to-transparent z-10 pointer-events-none" />
 
-        {/* Continuous Looping Marquee Track */}
+        {/* Continuous Looping Marquee Track showing all 10 banks */}
         <div className="animate-marquee-track flex gap-4 sm:gap-6 px-4">
           {marqueeItems.map((bank, index) => (
             <div
@@ -88,7 +153,7 @@ export const BankingNetwork: React.FC = () => {
               </div>
 
               {/* Bank Title & Classification */}
-              <div className="mt-2 text-center">
+              <div className="mt-2 text-center w-full px-2">
                 <h4 className="text-xs sm:text-sm font-bold text-slate-900 group-hover:text-brand-forest transition-colors truncate">
                   {bank.name}
                 </h4>
