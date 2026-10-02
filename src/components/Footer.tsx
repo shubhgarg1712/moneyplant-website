@@ -87,7 +87,9 @@ export const Footer: React.FC = () => {
                 <Mail className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
                 <div>
                   <span className="text-xs text-slate-400 block">Email</span>
-                  <span className="text-slate-200 font-medium">[ADD EMAIL]</span>
+                  <a href="mailto:info.mpfinserve@gmail.com" className="text-slate-200 font-medium hover:text-brand-fresh transition-colors">
+                    info.mpfinserve@gmail.com
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
