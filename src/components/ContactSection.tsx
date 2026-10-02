@@ -80,17 +80,34 @@ export const ContactSection: React.FC = () => {
       timeStyle: 'medium'
     });
 
+    // Sanitize customer name and service for safe single-line email subject (prevent header injection)
+    const sanitizeSubjectValue = (value: string): string => {
+      return value
+        .replace(/[\r\n\t\x00-\x1F\x7F]+/g, ' ') // Strip CR, LF, tabs, control characters
+        .replace(/[\u2028\u2029]/g, ' ')          // Strip Unicode newline / paragraph separators
+        .replace(/\s+/g, ' ')                     // Normalize multiple spaces into single space
+        .trim();
+    };
+
+    const cleanCustomerName = sanitizeSubjectValue(formData.fullName).slice(0, 80) || 'Customer';
+    const cleanService = sanitizeSubjectValue(formData.service).slice(0, 50) || 'General Inquiry';
+
+    // Format: New Lead – [Customer Name] – [Service Required]
+    const emailSubject = `New Lead – ${cleanCustomerName} – ${cleanService}`;
+
     // Step 2 & 3 & 4: Secure transmission payload to info.mpfinserve@gmail.com
     const payload = {
-      _subject: `New MoneyPlant Website Enquiry – ${formData.service}`,
+      _subject: emailSubject,
+      _replyto: formData.email.trim(),
       _template: 'table',
       _captcha: 'false',
-      "Introduction": "New enquiry received through the MoneyPlant website.",
-      "Name": formData.fullName.trim(),
+      "Notification": "New MoneyPlant Lead",
+      "Customer Name": cleanCustomerName,
       "Phone": formData.phone.trim(),
       "Email": formData.email.trim(),
-      "Service Required": formData.service,
+      "Service Required": cleanService,
       "Message": formData.message.trim(),
+      "Submitted from": "MoneyPlant Website",
       "Submitted On": submittedOnFormatted
     };
 

@@ -21,20 +21,32 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     timeStyle: 'medium'
   });
 
+  const sanitizeSubjectValue = (value: string): string => {
+    return value
+      .replace(/[\r\n\t\x00-\x1F\x7F]+/g, ' ')
+      .replace(/[\u2028\u2029]/g, ' ')
+      .replace(/\s+/g, ' ')
+      .trim();
+  };
+
+  const cleanCustomerName = sanitizeSubjectValue(String(fullName)).slice(0, 80) || 'Customer';
+  const cleanService = sanitizeSubjectValue(String(service)).slice(0, 50) || 'General Inquiry';
   const targetEmail = "info.mpfinserve@gmail.com";
-  const subject = `New MoneyPlant Website Enquiry – ${service}`;
+  const subject = `New Lead – ${cleanCustomerName} – ${cleanService}`;
 
   // Forwarding payload
   const payload = {
     _subject: subject,
+    _replyto: String(email).trim(),
     _template: 'table',
     _captcha: 'false',
-    "Introduction": "New enquiry received through the MoneyPlant website.",
-    "Name": fullName,
-    "Phone": phone,
-    "Email": email,
-    "Service Required": service,
-    "Message": message,
+    "Notification": "New MoneyPlant Lead",
+    "Customer Name": cleanCustomerName,
+    "Phone": String(phone).trim(),
+    "Email": String(email).trim(),
+    "Service Required": cleanService,
+    "Message": String(message).trim(),
+    "Submitted from": "MoneyPlant Website",
     "Submitted On": submittedOn
   };
 
