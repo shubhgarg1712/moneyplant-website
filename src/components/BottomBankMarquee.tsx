@@ -8,8 +8,11 @@ export const BottomBankMarquee: React.FC = () => {
   return (
     <aside 
       aria-label="Partner banks continuous marquee"
-      className="fixed bottom-0 left-0 right-0 z-30 h-[48px] sm:h-[54px] bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-4px_16px_rgba(0,0,0,0.04)] flex items-center overflow-hidden select-none"
+      className="fixed bottom-0 left-0 right-0 z-30 h-[48px] sm:h-[54px] bg-white/98 backdrop-blur-md border-t border-slate-200/80 shadow-[0_-4px_20px_rgba(0,0,0,0.06),0_-1px_3px_rgba(0,0,0,0.03)] flex items-center overflow-hidden select-none"
     >
+      {/* Subtle floating ambient top shadow/gradient transition */}
+      <div className="absolute -top-3 left-0 right-0 h-3 bg-gradient-to-t from-slate-900/[0.03] to-transparent pointer-events-none" />
+
       {/* Subtle edge fades for smooth entry/exit */}
       <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-r from-white via-white/80 to-transparent z-10 pointer-events-none" />
       <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-16 bg-gradient-to-l from-white via-white/80 to-transparent z-10 pointer-events-none" />

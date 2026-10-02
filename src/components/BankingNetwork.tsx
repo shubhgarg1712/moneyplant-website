@@ -117,8 +117,8 @@ export const BankingNetwork: React.FC = () => {
   const marqueeItems = [...banksList, ...banksList];
 
   return (
-    <section className="py-20 sm:py-24 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+    <section className="py-20 sm:py-28 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-14">
         
         {/* Section Header */}
         <div className="max-w-3xl">
@@ -137,7 +137,7 @@ export const BankingNetwork: React.FC = () => {
       </div>
 
       {/* Marquee Container with subtle gradient edge fades */}
-      <div className="relative w-full overflow-hidden py-4">
+      <div className="relative w-full overflow-hidden py-6 sm:py-8 my-2">
         {/* Left Gradient Fade */}
         <div className="absolute left-0 top-0 bottom-0 w-16 sm:w-32 bg-gradient-to-r from-slate-50/90 via-slate-50/40 to-transparent z-10 pointer-events-none" />
         
@@ -176,7 +176,7 @@ export const BankingNetwork: React.FC = () => {
       </div>
 
       {/* Notice / Regulatory Callout */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 sm:mt-14">
         <div className="p-4 rounded-2xl bg-white border border-slate-200/80 shadow-soft text-xs text-slate-500 flex items-start gap-3">
           <Info className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
           <p className="leading-relaxed">
