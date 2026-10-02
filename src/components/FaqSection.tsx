@@ -12,7 +12,7 @@ export const FaqSection: React.FC = () => {
     },
     {
       question: "How can I contact MoneyPlant?",
-      answer: "You can connect with us directly via our online enquiry form on this website, by calling [ADD PHONE NUMBER], or by emailing [ADD EMAIL]. Our advisory desk will schedule a structured consultation to review your requirements."
+      answer: "You can connect with us directly via our online enquiry form on this website, by calling +91 8178419058, or by emailing info.mpfinserve@gmail.com. Our advisory desk will schedule a structured consultation to review your requirements."
     },
     {
       question: "How do I know which financial solution is suitable for me?",

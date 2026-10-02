@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Phone, Mail, MapPin, Globe, CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
+import { Phone, Mail, Globe, CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
 
 export const TARGET_EMAIL = "info.mpfinserve@gmail.com";
 
@@ -356,14 +356,19 @@ export const ContactSection: React.FC = () => {
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div className="space-y-5">
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 text-brand-forest flex items-center justify-center shrink-0">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Phone</p>
-                    <p className="text-sm font-semibold text-slate-900 mt-0.5">[ADD PHONE NUMBER]</p>
+                    <a 
+                      href="tel:+918178419058"
+                      className="text-sm font-semibold text-slate-900 hover:text-brand-forest mt-0.5 block hover:underline"
+                    >
+                      +91 8178419058
+                    </a>
                   </div>
                 </div>
 
@@ -384,37 +389,22 @@ export const ContactSection: React.FC = () => {
 
                 <div className="flex items-start gap-4">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 text-brand-forest flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Address</p>
-                    <p className="text-sm font-semibold text-slate-900 mt-0.5">[ADD OFFICE ADDRESS]</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-emerald-50 text-brand-forest flex items-center justify-center shrink-0">
                     <Globe className="w-5 h-5" />
                   </div>
                   <div>
                     <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Website</p>
-                    <p className="text-sm font-semibold text-brand-forest mt-0.5">moneyplant.in</p>
+                    <a 
+                      href="https://moneyplant.in"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-semibold text-brand-forest hover:text-brand-primary mt-0.5 block hover:underline"
+                    >
+                      moneyplant.in
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Google Maps Placeholder */}
-            <div className="bg-white rounded-3xl p-3 border border-slate-200/80 shadow-soft overflow-hidden">
-              <div className="h-44 w-full bg-slate-100/80 rounded-2xl relative flex flex-col items-center justify-center p-4 border border-slate-200/60 text-center">
-                <MapPin className="w-8 h-8 text-brand-forest mb-2 animate-bounce" />
-                <p className="text-sm font-bold text-slate-800">Office Location Map</p>
-                <p className="text-xs text-slate-500 max-w-xs mt-1">
-                  Interactive Google Maps preview centered at [ADD OFFICE ADDRESS]
-                </p>
-              </div>
-            </div>
-
           </div>
 
         </div>

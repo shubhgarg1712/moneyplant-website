@@ -1,5 +1,5 @@
 import React from 'react';
-import { Phone, Mail, MapPin, Globe, ShieldAlert } from 'lucide-react';
+import { Phone, Mail, Globe, ShieldAlert } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
@@ -80,7 +80,9 @@ export const Footer: React.FC = () => {
                 <Phone className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
                 <div>
                   <span className="text-xs text-slate-400 block">Phone</span>
-                  <span className="text-slate-200 font-medium">[ADD PHONE NUMBER]</span>
+                  <a href="tel:+918178419058" className="text-slate-200 font-medium hover:text-brand-fresh transition-colors">
+                    +91 8178419058
+                  </a>
                 </div>
               </li>
               <li className="flex items-start gap-3">
@@ -93,10 +95,12 @@ export const Footer: React.FC = () => {
                 </div>
               </li>
               <li className="flex items-start gap-3">
-                <MapPin className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
+                <Globe className="w-4 h-4 text-brand-fresh shrink-0 mt-0.5" />
                 <div>
-                  <span className="text-xs text-slate-400 block">Office Address</span>
-                  <span className="text-slate-200 font-medium">[ADD OFFICE ADDRESS]</span>
+                  <span className="text-xs text-slate-400 block">Website</span>
+                  <a href="https://moneyplant.in" target="_blank" rel="noopener noreferrer" className="text-slate-200 font-medium hover:text-brand-fresh transition-colors">
+                    moneyplant.in
+                  </a>
                 </div>
               </li>
             </ul>
