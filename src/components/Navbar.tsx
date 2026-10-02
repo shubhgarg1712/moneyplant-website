@@ -1,15 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowRight } from 'lucide-react';
+import { moneyPlantLogoSymbol, moneyPlantLogoFull } from '../assets/logo';
 
 export const Navbar: React.FC = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.scrollY > 10;
+    }
+    return false;
+  });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const scrolled = window.scrollY > 10;
+      setIsScrolled((prev) => (prev !== scrolled ? scrolled : prev));
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -24,26 +31,28 @@ export const Navbar: React.FC = () => {
 
   return (
     <header 
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100 py-3' 
-          : 'bg-white py-3.5 border-b border-slate-100'
+      className={`fixed top-0 left-0 right-0 z-50 bg-white py-3.5 border-b border-slate-100 transition-[background-color,box-shadow] duration-200 ease-out ${
+        isScrolled ? 'shadow-sm' : 'shadow-none'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
           
-          {/* Logo on the left with exact uploaded logo & official brand typography */}
+          {/* Logo on the left with exact official logo & brand typography */}
           <a href="#home" className="flex items-center gap-3.5 group focus:outline-none rounded-lg">
-            <img 
-              src="/assets/moneyplant-logo-symbol.png" 
-              alt="MoneyPlant Official Logo" 
-              className="h-11 sm:h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
-              onError={(e) => {
-                const target = e.currentTarget;
-                target.src = '/assets/moneyplant-logo.png';
-              }}
-            />
+            <div className="w-11 h-11 sm:w-12 sm:h-12 aspect-square flex items-center justify-center shrink-0">
+              <img 
+                src={moneyPlantLogoSymbol} 
+                alt="MoneyPlant Official Logo" 
+                width={48}
+                height={48}
+                className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-105"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.src = moneyPlantLogoFull;
+                }}
+              />
+            </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-xl sm:text-[23px] tracking-tight leading-none flex items-center">
                 <span className="text-[#1E3F0A]">MONEY</span>
@@ -98,11 +107,19 @@ export const Navbar: React.FC = () => {
         <div className="md:hidden bg-white border-b border-slate-200 px-4 pt-4 pb-6 space-y-3 shadow-xl animate-in fade-in slide-in-from-top-2">
           {/* Mobile brand header inside drawer */}
           <div className="flex items-center gap-3 pb-3 border-b border-slate-100 px-2">
-            <img 
-              src="/assets/moneyplant-logo-symbol.png" 
-              alt="MoneyPlant" 
-              className="h-10 w-auto object-contain"
-            />
+            <div className="w-10 h-10 aspect-square flex items-center justify-center shrink-0">
+              <img 
+                src={moneyPlantLogoSymbol} 
+                alt="MoneyPlant" 
+                width={40}
+                height={40}
+                className="w-full h-full object-contain"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.src = moneyPlantLogoFull;
+                }}
+              />
+            </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-lg tracking-tight leading-none flex items-center">
                 <span className="text-[#1E3F0A]">MONEY</span>

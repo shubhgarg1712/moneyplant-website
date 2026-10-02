@@ -1,5 +1,6 @@
 import React from 'react';
 import { Shield, Sparkles, UserCheck, Scale, Award } from 'lucide-react';
+import { moneyPlantLogoSymbol, moneyPlantLogoFull } from '../assets/logo';
 
 export const AboutSection: React.FC = () => {
   const values = [
@@ -26,7 +27,7 @@ export const AboutSection: React.FC = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-white">
+    <section id="about" className="scroll-mt-20 py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
@@ -74,11 +75,17 @@ export const AboutSection: React.FC = () => {
               <div className="absolute -right-8 -bottom-8 w-48 h-48 rounded-full bg-white/5 blur-xl pointer-events-none"></div>
 
               <div className="space-y-6 relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center shadow-md">
+                <div className="w-14 h-14 rounded-2xl bg-white p-2 flex items-center justify-center shadow-md shrink-0">
                   <img 
-                    src="/assets/moneyplant-logo-symbol.png" 
+                    src={moneyPlantLogoSymbol} 
                     alt="MoneyPlant Brand" 
+                    width={56}
+                    height={56}
                     className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.src = moneyPlantLogoFull;
+                    }}
                   />
                 </div>
 

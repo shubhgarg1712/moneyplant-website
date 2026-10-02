@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X } from 'lucide-react';
+import { moneyPlantLogoSymbol, moneyPlantLogoFull } from '../assets/logo';
 
 // Official MoneyPlant WhatsApp Business Configuration
 export const WHATSAPP_PHONE_NUMBER = "918178419058";
@@ -57,12 +58,14 @@ export const WhatsAppButton: React.FC = () => {
               {/* MoneyPlant Logo */}
               <div className="w-10 h-10 rounded-xl bg-slate-50 p-1 border border-slate-100 flex items-center justify-center shrink-0">
                 <img 
-                  src="/assets/moneyplant-logo-symbol.png" 
+                  src={moneyPlantLogoSymbol} 
                   alt="MoneyPlant Official Logo" 
+                  width={40}
+                  height={40}
                   className="w-full h-full object-contain"
                   onError={(e) => {
                     const target = e.currentTarget;
-                    target.src = '/assets/moneyplant-logo.png';
+                    target.src = moneyPlantLogoFull;
                   }}
                 />
               </div>

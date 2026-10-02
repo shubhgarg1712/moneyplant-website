@@ -34,7 +34,7 @@ export const WhyMoneyPlant: React.FC = () => {
   ];
 
   return (
-    <section id="why-us" className="py-24 bg-white relative">
+    <section id="why-us" className="scroll-mt-20 py-24 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}

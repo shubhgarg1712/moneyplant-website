@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight, ShieldCheck, CheckCircle2, TrendingUp, BarChart3 } from 'lucide-react';
+import { moneyPlantLogoSymbol, moneyPlantLogoFull } from '../assets/logo';
 
 export const Hero: React.FC = () => {
   return (
@@ -13,9 +14,15 @@ export const Hero: React.FC = () => {
             {/* Brand Identity Badge with Logo */}
             <div className="inline-flex items-center gap-3 px-3.5 py-1.5 rounded-full bg-white border border-emerald-200/90 shadow-sm">
               <img 
-                src="/assets/moneyplant-logo-symbol.png" 
+                src={moneyPlantLogoSymbol} 
                 alt="MoneyPlant Brand" 
-                className="w-5 h-5 object-contain"
+                width={20}
+                height={20}
+                className="w-5 h-5 object-contain shrink-0"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  target.src = moneyPlantLogoFull;
+                }}
               />
               <span className="text-xs sm:text-sm font-extrabold tracking-wide">
                 <span className="text-[#1E3F0A]">MONEY</span><span className="text-[#527E24]">PLANT</span> <span className="text-slate-600 font-medium">• Objective Financial Guidance</span>
@@ -81,11 +88,17 @@ export const Hero: React.FC = () => {
                 {/* Header with official logo symbol */}
                 <div className="flex items-center justify-between pb-4 border-b border-slate-100">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 shadow-sm">
+                    <div className="w-11 h-11 rounded-xl bg-slate-50 border border-slate-100 flex items-center justify-center p-1.5 shadow-sm shrink-0">
                       <img 
-                        src="/assets/moneyplant-logo-symbol.png" 
+                        src={moneyPlantLogoSymbol} 
                         alt="MoneyPlant" 
+                        width={44}
+                        height={44}
                         className="w-full h-full object-contain"
+                        onError={(e) => {
+                          const target = e.currentTarget;
+                          target.src = moneyPlantLogoFull;
+                        }}
                       />
                     </div>
                     <div>
@@ -149,11 +162,17 @@ export const Hero: React.FC = () => {
                     <p className="text-xs font-semibold text-emerald-200">MoneyPlant Philosophy</p>
                     <p className="text-[11px] text-slate-200">“We speak financial fluently”</p>
                   </div>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center p-1">
+                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center p-1 shrink-0">
                     <img 
-                      src="/assets/moneyplant-logo-symbol.png" 
+                      src={moneyPlantLogoSymbol} 
                       alt="MP" 
+                      width={32}
+                      height={32}
                       className="w-full h-full object-contain brightness-150"
+                      onError={(e) => {
+                        const target = e.currentTarget;
+                        target.src = moneyPlantLogoFull;
+                      }}
                     />
                   </div>
                 </div>

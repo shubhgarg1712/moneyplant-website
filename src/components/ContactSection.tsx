@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Phone, Mail, Globe, CheckCircle2, AlertCircle, Loader2, Send } from 'lucide-react';
 import { CustomSelect } from './CustomSelect';
+import { moneyPlantLogoSymbol, moneyPlantLogoFull } from '../assets/logo';
 
 export const TARGET_EMAIL = "info.mpfinserve@gmail.com";
 
@@ -131,7 +132,7 @@ export const ContactSection: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-24 bg-slate-50/70 border-t border-slate-200/80">
+    <section id="contact" className="scroll-mt-20 py-24 bg-slate-50/70 border-t border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -336,9 +337,15 @@ export const ContactSection: React.FC = () => {
               <div className="flex items-center gap-3.5 pb-4 border-b border-slate-100">
                 <div className="w-11 h-11 rounded-xl bg-slate-50 p-1.5 border border-slate-100 flex items-center justify-center shrink-0">
                   <img 
-                    src="/assets/moneyplant-logo-symbol.png" 
+                    src={moneyPlantLogoSymbol} 
                     alt="MoneyPlant" 
+                    width={44}
+                    height={44}
                     className="w-full h-full object-contain"
+                    onError={(e) => {
+                      const target = e.currentTarget;
+                      target.src = moneyPlantLogoFull;
+                    }}
                   />
                 </div>
                 <div>

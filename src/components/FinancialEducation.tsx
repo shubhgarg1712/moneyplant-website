@@ -60,7 +60,7 @@ export const FinancialEducation: React.FC = () => {
   });
 
   return (
-    <section id="resources" className="py-24 bg-slate-50/70 border-t border-slate-100">
+    <section id="resources" className="scroll-mt-20 py-24 bg-slate-50/70 border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

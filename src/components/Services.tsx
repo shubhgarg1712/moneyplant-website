@@ -112,7 +112,7 @@ export const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-24 bg-white border-t border-slate-100">
+    <section id="services" className="scroll-mt-20 py-24 bg-white border-t border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
