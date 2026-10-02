@@ -9,10 +9,10 @@ export const Footer: React.FC = () => {
         {/* Main Footer Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10">
           
-          {/* Prominent Logo & Brand Tagline */}
+          {/* Prominent Logo & Brand Tagline - Consistent with Header */}
           <div className="lg:col-span-5 space-y-5">
             <div className="flex items-center gap-3.5">
-              <div className="w-14 h-14 rounded-2xl bg-white p-1.5 flex items-center justify-center shadow-md shrink-0">
+              <div className="w-12 sm:w-13 h-12 sm:h-13 rounded-xl bg-white p-1.5 flex items-center justify-center shadow-md shrink-0">
                 <img 
                   src="/assets/moneyplant-logo-symbol.png" 
                   alt="MoneyPlant Official Logo" 
@@ -24,10 +24,11 @@ export const Footer: React.FC = () => {
                 />
               </div>
               <div className="flex flex-col">
-                <span className="font-extrabold text-2xl tracking-tight text-white leading-tight">
-                  MONEY<span className="text-brand-fresh">PLANT</span>
+                <span className="font-extrabold text-xl sm:text-[23px] tracking-tight leading-none flex items-center">
+                  <span className="text-[#8BBF46]">MONEY</span>
+                  <span className="text-[#34D399]">PLANT</span>
                 </span>
-                <span className="text-xs text-brand-fresh font-medium tracking-wide">
+                <span className="text-[11px] sm:text-xs text-[#86EFAC] font-semibold tracking-normal mt-1">
                   “We speak financial fluently”
                 </span>
               </div>
