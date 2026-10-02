@@ -32,16 +32,16 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const cleanCustomerName = sanitizeSubjectValue(String(fullName)).slice(0, 80) || 'Customer';
   const cleanService = sanitizeSubjectValue(String(service)).slice(0, 50) || 'General Inquiry';
   const targetEmail = "info.mpfinserve@gmail.com";
-  const subject = `New Lead – ${cleanCustomerName} – ${cleanService}`;
+  const subject = cleanCustomerName;
 
   // Forwarding payload
   const payload = {
     _subject: subject,
+    _name: cleanCustomerName,
     _replyto: String(email).trim(),
     _template: 'table',
     _captcha: 'false',
-    "Notification": "New MoneyPlant Lead",
-    "Customer Name": cleanCustomerName,
+    "Name": cleanCustomerName,
     "Phone": String(phone).trim(),
     "Email": String(email).trim(),
     "Service Required": cleanService,

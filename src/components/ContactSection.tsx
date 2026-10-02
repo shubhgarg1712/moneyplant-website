@@ -92,17 +92,17 @@ export const ContactSection: React.FC = () => {
     const cleanCustomerName = sanitizeSubjectValue(formData.fullName).slice(0, 80) || 'Customer';
     const cleanService = sanitizeSubjectValue(formData.service).slice(0, 50) || 'General Inquiry';
 
-    // Format: New Lead – [Customer Name] – [Service Required]
-    const emailSubject = `New Lead – ${cleanCustomerName} – ${cleanService}`;
+    // Email Subject: Use [Customer Name] directly as requested
+    const emailSubject = cleanCustomerName;
 
     // Step 2 & 3 & 4: Secure transmission payload to info.mpfinserve@gmail.com
     const payload = {
       _subject: emailSubject,
+      _name: cleanCustomerName,
       _replyto: formData.email.trim(),
       _template: 'table',
       _captcha: 'false',
-      "Notification": "New MoneyPlant Lead",
-      "Customer Name": cleanCustomerName,
+      "Name": cleanCustomerName,
       "Phone": formData.phone.trim(),
       "Email": formData.email.trim(),
       "Service Required": cleanService,
