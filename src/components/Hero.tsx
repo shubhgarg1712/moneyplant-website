@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, ShieldCheck, CheckCircle2, TrendingUp, BarChart3 } from 'lucide-react';
+import { ArrowRight, ShieldCheck, CheckCircle2, BarChart3 } from 'lucide-react';
 import { moneyPlantLogoSymbol, moneyPlantLogoFull } from '../assets/logo';
 
 export const Hero: React.FC = () => {
@@ -83,7 +83,7 @@ export const Hero: React.FC = () => {
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-brand-forest/15 to-brand-fresh/20 blur-2xl -z-10"></div>
 
               {/* Main Financial Analytics Card */}
-              <div className="bg-white rounded-3xl p-6 sm:p-7 shadow-premium border border-slate-100 space-y-6">
+              <div className="bg-white rounded-3xl p-6 sm:p-7 pb-7 sm:pb-8 shadow-premium border border-slate-100 space-y-6">
                 
                 {/* Header with official logo symbol */}
                 <div className="flex items-center justify-between pb-4 border-b border-slate-100">
@@ -138,26 +138,40 @@ export const Hero: React.FC = () => {
                   </div>
                 </div>
 
-                {/* Sub Features Inside Card */}
-                <div className="grid grid-cols-2 gap-3 pt-1">
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
-                    <ShieldCheck className="w-5 h-5 text-brand-primary shrink-0" />
-                    <div>
-                      <p className="text-xs font-bold text-slate-900">Protected</p>
-                      <p className="text-[10px] text-slate-500">Risk Mitigation</p>
+                {/* Information Cards Area: 2-column on desktop/tablet, stacked on mobile */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                  {/* Left Column: Protected + Transparent Terms */}
+                  <div className="flex flex-col gap-3">
+                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
+                      <ShieldCheck className="w-5 h-5 text-brand-primary shrink-0" />
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">Protected</p>
+                        <p className="text-[10px] text-slate-500">Risk Mitigation</p>
+                      </div>
+                    </div>
+                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
+                      <CheckCircle2 className="w-5 h-5 text-brand-forest shrink-0" />
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">Transparent Terms</p>
+                        <p className="text-[10px] text-slate-500">Zero hidden ambiguity</p>
+                      </div>
                     </div>
                   </div>
-                  <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3">
-                    <BarChart3 className="w-5 h-5 text-brand-forest shrink-0" />
-                    <div>
-                      <p className="text-xs font-bold text-slate-900">Objective</p>
-                      <p className="text-[10px] text-slate-500">Comparative Analysis</p>
+
+                  {/* Right Column: Objective spanning equal height */}
+                  <div className="flex flex-col">
+                    <div className="p-3 rounded-xl bg-slate-50 border border-slate-100 flex items-center gap-3 h-full">
+                      <BarChart3 className="w-5 h-5 text-brand-forest shrink-0" />
+                      <div>
+                        <p className="text-xs font-bold text-slate-900">Objective</p>
+                        <p className="text-[10px] text-slate-500">Comparative Analysis</p>
+                      </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Brand Motto Highlight with exact official Logo */}
-                <div className="p-3.5 bg-brand-forest rounded-xl text-white flex items-center justify-between">
+                {/* Brand Motto Highlight with exact official Logo: Full Width underneath Information Cards */}
+                <div className="p-3.5 bg-brand-forest rounded-xl text-white flex items-center justify-between w-full">
                   <div className="space-y-0.5">
                     <p className="text-xs font-semibold text-emerald-200">MoneyPlant Philosophy</p>
                     <p className="text-[11px] text-slate-200">“We speak financial fluently”</p>
@@ -178,18 +192,6 @@ export const Hero: React.FC = () => {
                 </div>
 
               </div>
-
-              {/* Floating Pill Accent */}
-              <div className="hidden sm:flex absolute -bottom-5 -left-6 bg-white p-3.5 rounded-2xl shadow-premium border border-slate-100 items-center gap-3">
-                <div className="w-8 h-8 rounded-full bg-emerald-100 text-brand-forest flex items-center justify-center">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <div>
-                  <p className="text-xs font-bold text-slate-900">Transparent Terms</p>
-                  <p className="text-[10px] text-slate-500">Zero hidden ambiguity</p>
-                </div>
-              </div>
-
             </div>
           </div>
 
