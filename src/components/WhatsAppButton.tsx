@@ -12,7 +12,11 @@ export const WHATSAPP_DEFAULT_MESSAGE = WHATSAPP_PREFILLED_TEXT;
 // Exact requested direct WhatsApp URL
 export const WHATSAPP_DIRECT_URL = "https://wa.me/918178419058?text=Hello%20MoneyPlant,%20I%20would%20like%20to%20know%20more%20about%20your%20financial%20services.";
 
-export const WhatsAppButton: React.FC = () => {
+export interface WhatsAppButtonProps {
+  isBottomMarqueeVisible?: boolean;
+}
+
+export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeVisible = true }) => {
   const [isOpen, setIsOpen] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
 
@@ -44,7 +48,9 @@ export const WhatsAppButton: React.FC = () => {
   return (
     <div 
       ref={widgetRef}
-      className="fixed bottom-[60px] right-4 sm:bottom-[70px] sm:right-6 z-50 flex flex-col items-end pointer-events-none"
+      className={`fixed right-4 sm:right-6 z-50 flex flex-col items-end pointer-events-none transition-[bottom] duration-500 ease-out motion-reduce:transition-none ${
+        isBottomMarqueeVisible ? 'bottom-[60px] sm:bottom-[70px]' : 'bottom-4 sm:bottom-6'
+      }`}
     >
       {/* WhatsApp "Chat with us" Popup */}
       {isOpen && (

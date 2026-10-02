@@ -117,7 +117,7 @@ export const BankingNetwork: React.FC = () => {
   const marqueeItems = [...banksList, ...banksList];
 
   return (
-    <section className="py-20 sm:py-28 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden">
+    <section id="banking-network" className="py-20 sm:py-28 bg-slate-50/70 border-t border-slate-200/80 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-14">
         
         {/* Section Header */}
