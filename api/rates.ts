@@ -33,6 +33,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   const now = Date.now();
 
+  // Return fresh cached data if within 1 hour
   if (inMemoryCache && now - inMemoryCache.timestamp < CACHE_TTL_MS) {
     return res.status(200).json(inMemoryCache.data);
   }
@@ -82,7 +83,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     inMemoryCache = { data: freshData, timestamp: now };
     return res.status(200).json(freshData);
   } catch (error: any) {
-    console.error('Error fetching RBI Repo Rate:', error?.message || error);
+    console.error('Error fetching RBI Rates:', error?.message || error);
 
     if (inMemoryCache) {
       return res.status(200).json({

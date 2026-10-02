@@ -1,16 +1,21 @@
 import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 
-function repoRateDevPlugin(): Plugin {
+function ratesDevPlugin(): Plugin {
   let cache: { data: any; timestamp: number } | null = null;
   const CACHE_TTL_MS = 60 * 60 * 1000;
-  const RBI_URL = 'https://m.rbi.org.in/scripts/bs_speechesview.aspx?id=1352';
+  const RBI_URL = 'https://m.rbi.org.in/scripts/bs_viewcontent.aspx?Id=426';
 
   return {
-    name: 'vite-plugin-repo-rate-dev',
+    name: 'vite-plugin-rates-dev',
     configureServer(server) {
       server.middlewares.use(async (req, res, next) => {
-        if (req.url === '/api/repo-rate' || req.url?.startsWith('/api/repo-rate?')) {
+        if (
+          req.url === '/api/rates' || 
+          req.url?.startsWith('/api/rates?') ||
+          req.url === '/api/repo-rate' || 
+          req.url?.startsWith('/api/repo-rate?')
+        ) {
           res.setHeader('Content-Type', 'application/json');
           res.setHeader('Access-Control-Allow-Origin', '*');
           const now = Date.now();
@@ -31,13 +36,20 @@ function repoRateDevPlugin(): Plugin {
             clearTimeout(timeout);
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             const html = await response.text();
-            const rateMatch = html.match(/Policy\s*Repo\s*Rate[\s\S]*?([0-9.]+\s*%)/i);
-            if (!rateMatch) throw new Error('Could not parse Policy Repo Rate');
+
+            const repoMatch = html.match(/Policy\s*Repo\s*Rate[\s\S]*?([0-9.]+\s*%)/i);
+            const mclrMatch = html.match(/MCLR\s*\(\s*Overnight\s*\)[\s\S]*?([0-9.]+\s*%\s*(?:[-–—]\s*[0-9.]+\s*%)?)/i);
             const cleanHtml = html.replace(/<!--[\s\S]*?-->/g, '');
             const dateMatch = cleanHtml.match(/as\s*on\s*([A-Za-z]+\s+\d{1,2},?\s+\d{4})/i);
+
+            const repoRate = repoMatch ? repoMatch[1].trim() : (cache?.data?.repoRate || null);
+            const mclrOvernight = mclrMatch ? mclrMatch[1].trim().replace(/\s*[-–—]\s*/, ' – ') : (cache?.data?.mclrOvernight || null);
+
             const data = {
-              rate: rateMatch[1].trim(),
-              name: 'Policy Repo Rate',
+              repoRate,
+              mclrOvernight,
+              rate: repoRate,
+              name: 'RBI Current Rates',
               source: 'Reserve Bank of India',
               sourceUrl: RBI_URL,
               asOn: dateMatch ? dateMatch[1].trim() : null,
@@ -51,8 +63,10 @@ function repoRateDevPlugin(): Plugin {
             } else {
               res.statusCode = 503;
               res.end(JSON.stringify({
+                repoRate: null,
+                mclrOvernight: null,
                 rate: null,
-                name: 'Policy Repo Rate',
+                name: 'RBI Current Rates',
                 source: 'Reserve Bank of India',
                 sourceUrl: RBI_URL,
                 error: 'Currently unavailable',
@@ -71,7 +85,7 @@ function repoRateDevPlugin(): Plugin {
 // https://vitejs.dev/config/
 export default defineConfig({
   base: '/moneyplant-website/',
-  plugins: [react(), repoRateDevPlugin()],
+  plugins: [react(), ratesDevPlugin()],
   server: {
     port: 3000,
     open: false,
