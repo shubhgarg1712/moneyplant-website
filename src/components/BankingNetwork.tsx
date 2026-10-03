@@ -51,6 +51,34 @@ export const RATE_PRODUCTS: RateProductMeta[] = [
   { key: 'usedCarLoan', label: 'Used Car Loan', shortDesc: 'Pre-owned vehicle financing' },
 ];
 
+export interface AvailableRateProduct {
+  key: keyof BankRates;
+  label: string;
+  shortDesc: string;
+  value: string;
+}
+
+export function getAvailableRates(bank: BankItem): AvailableRateProduct[] {
+  return RATE_PRODUCTS.map((product) => {
+    const value = bank.rates[product.key];
+    return {
+      ...product,
+      value: value ? value.trim() : '',
+    };
+  }).filter((item) => {
+    if (!item.value) return false;
+    const lower = item.value.toLowerCase();
+    return (
+      lower !== 'not available' &&
+      lower !== 'rate not provided' &&
+      lower !== '0%' &&
+      lower !== '0' &&
+      lower !== 'n/a'
+    );
+  });
+}
+
+
 // Exactly 12 unique banks in the requested sequential order:
 // 1. State Bank of India (SBI)
 // 2. HDFC Bank

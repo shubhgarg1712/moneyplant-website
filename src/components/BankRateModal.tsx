@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { X, Info, ArrowRight, CheckCircle2, ShieldCheck } from 'lucide-react';
-import { BankItem, RATE_PRODUCTS } from './BankingNetwork';
+import { X, Info, ArrowRight, ShieldCheck } from 'lucide-react';
+import { BankItem, getAvailableRates } from './BankingNetwork';
 
 export interface BankRateModalProps {
   bank: BankItem | null;
@@ -29,6 +29,8 @@ export const BankRateModal: React.FC<BankRateModalProps> = ({ bank, onClose }) =
   }, [bank, onClose]);
 
   if (!bank) return null;
+
+  const availableProducts = getAvailableRates(bank);
 
   const handleConsultationClick = () => {
     onClose();
@@ -91,51 +93,40 @@ export const BankRateModal: React.FC<BankRateModalProps> = ({ bank, onClose }) =
 
         {/* Advisory Subheading */}
         <div className="my-5 flex items-center justify-between text-xs text-slate-500 px-1">
-          <span className="font-semibold text-slate-700">Financial Product</span>
+          <span className="font-semibold text-slate-700">Available Products</span>
           <span className="font-semibold text-slate-700">Indicative ROI (p.a.)</span>
         </div>
 
-        {/* 8 Product Rates Grid */}
+        {/* Available Product Rates List */}
         <div className="space-y-2.5">
-          {RATE_PRODUCTS.map((product) => {
-            const rateValue = bank.rates[product.key];
-            const isAvailable = rateValue && rateValue.toLowerCase() !== 'not available';
-
-            return (
-              <div
-                key={product.key}
-                className="flex items-center justify-between p-3 sm:p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 hover:bg-slate-50 transition-colors gap-3"
-              >
-                <div className="min-w-0 flex-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-xs sm:text-sm font-bold text-slate-800">
-                      {product.label}
-                    </span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 mt-0.5 truncate">
-                    {product.shortDesc}
-                  </p>
+          {availableProducts.map((product) => (
+            <div
+              key={product.key}
+              className="flex items-center justify-between p-3 sm:p-3.5 rounded-xl border border-slate-100 bg-slate-50/70 hover:bg-slate-50 transition-colors gap-3"
+            >
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <span className="text-xs sm:text-sm font-bold text-slate-800">
+                    {product.label}
+                  </span>
                 </div>
+                <p className="text-[11px] text-slate-400 mt-0.5 truncate">
+                  {product.shortDesc}
+                </p>
+              </div>
 
-                <div className="shrink-0 text-right">
-                  {isAvailable ? (
-                    <div className="inline-flex items-baseline gap-1 bg-emerald-50/80 px-3 py-1 rounded-lg border border-emerald-100">
-                      <span className="text-sm sm:text-base font-extrabold text-brand-forest tracking-tight">
-                        {rateValue}
-                      </span>
-                      <span className="text-[10px] font-medium text-emerald-700 uppercase">
-                        p.a.
-                      </span>
-                    </div>
-                  ) : (
-                    <span className="inline-flex items-center text-[11px] font-medium text-slate-400 bg-slate-100/90 px-2.5 py-1 rounded-lg border border-slate-200/60">
-                      Not Available
-                    </span>
-                  )}
+              <div className="shrink-0 text-right">
+                <div className="inline-flex items-baseline gap-1 bg-emerald-50/80 px-3 py-1 rounded-lg border border-emerald-100">
+                  <span className="text-sm sm:text-base font-extrabold text-brand-forest tracking-tight">
+                    {product.value}
+                  </span>
+                  <span className="text-[10px] font-medium text-emerald-700 uppercase">
+                    p.a.
+                  </span>
                 </div>
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
 
         {/* Regulatory & Institutional Advisory Callout */}
