@@ -27,8 +27,7 @@ export const Navbar: React.FC = () => {
     { name: 'Our Services', href: '#services' },
     { name: 'Why MoneyPlant', href: '#why-us' },
     { name: 'Resources', href: '#resources' },
-    { name: 'Rates', href: '#rates', isRates: true },
-    { name: 'Contact', href: '#contact' },
+    { name: 'RBI Policy Rates', href: '#rates', isRates: true },
   ];
 
   return (
@@ -41,7 +40,7 @@ export const Navbar: React.FC = () => {
         <div className="flex items-center justify-between">
           
           {/* Logo on the left with exact official logo & brand typography */}
-          <a href="#home" className="flex items-center gap-3.5 group focus:outline-none rounded-lg">
+          <a href="#home" className="flex items-center gap-3.5 group focus:outline-none rounded-lg shrink-0">
             <div className="w-11 h-11 sm:w-12 sm:h-12 aspect-square flex items-center justify-center shrink-0">
               <img 
                 src={moneyPlantLogoSymbol} 
@@ -67,7 +66,7 @@ export const Navbar: React.FC = () => {
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2">
+          <nav className="hidden md:flex items-center gap-0.5 lg:gap-1.5 xl:gap-2">
             {navLinks.map((link) => {
               if (link.isRates) {
                 return <RatesDropdown key="rates-desktop" mode="desktop" />;
@@ -77,7 +76,7 @@ export const Navbar: React.FC = () => {
                 <a
                   key={link.name}
                   href={link.href}
-                  className="px-2.5 lg:px-3 py-2 text-sm font-medium text-slate-700 hover:text-brand-forest rounded-lg transition-colors hover:bg-slate-50"
+                  className="px-2 md:px-2 lg:px-3 py-2 text-xs md:text-[13px] lg:text-sm font-medium text-slate-700 hover:text-brand-forest rounded-lg transition-colors hover:bg-slate-50 whitespace-nowrap"
                 >
                   {link.name}
                 </a>
@@ -86,13 +85,13 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Desktop "Get in Touch" CTA Button */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-3 lg:gap-4 shrink-0">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 bg-brand-forest text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-brand-dark transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0"
+              className="inline-flex items-center gap-1.5 lg:gap-2 bg-brand-forest text-white px-3.5 lg:px-5 py-2 lg:py-2.5 rounded-full text-xs md:text-[13px] lg:text-sm font-semibold hover:bg-brand-dark transition-all duration-200 shadow-sm hover:shadow hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap"
             >
               <span>Get in Touch</span>
-              <ArrowRight className="w-4 h-4 text-brand-fresh" />
+              <ArrowRight className="w-3.5 h-3.5 lg:w-4 lg:h-4 text-brand-fresh shrink-0" />
             </a>
           </div>
 

@@ -81,8 +81,8 @@ export const RatesDropdown: React.FC<RatesDropdownProps> = ({ mode = 'desktop', 
           aria-expanded={isOpen}
           className="w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-base font-medium text-slate-700 hover:text-brand-forest hover:bg-emerald-50/70 transition-colors"
         >
-          <span>Rates</span>
-          <div className="flex items-center gap-2">
+          <span>RBI Policy Rates</span>
+          <div className="flex items-center gap-2 shrink-0">
             {data?.repoRate && (
               <span className="text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-brand-forest">
                 Repo {data.repoRate}
@@ -184,15 +184,15 @@ export const RatesDropdown: React.FC<RatesDropdownProps> = ({ mode = 'desktop', 
         onFocus={() => setIsOpen(true)}
         aria-expanded={isOpen}
         aria-haspopup="dialog"
-        className={`px-2.5 lg:px-3 py-2 text-sm font-medium rounded-lg transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-forest/20 ${
+        className={`px-2 md:px-2 lg:px-3 py-2 text-xs md:text-[13px] lg:text-sm font-medium rounded-lg transition-colors flex items-center gap-1 focus:outline-none focus:ring-2 focus:ring-brand-forest/20 whitespace-nowrap ${
           isOpen
             ? 'text-brand-forest bg-slate-50'
             : 'text-slate-700 hover:text-brand-forest hover:bg-slate-50'
         }`}
       >
-        <span>Rates</span>
+        <span>RBI Policy Rates</span>
         <ChevronDown
-          className={`w-3.5 h-3.5 transition-transform duration-200 ${
+          className={`w-3.5 h-3.5 shrink-0 transition-transform duration-200 ${
             isOpen ? 'rotate-180 text-brand-forest' : 'text-slate-400'
           }`}
         />
