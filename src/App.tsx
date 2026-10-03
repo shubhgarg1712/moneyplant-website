@@ -7,7 +7,8 @@ import { WhyMoneyPlant } from './components/WhyMoneyPlant';
 import { HowItWorks } from './components/HowItWorks';
 import { AboutSection } from './components/AboutSection';
 import { FinancialCalculators } from './components/FinancialCalculators';
-import { BankingNetwork } from './components/BankingNetwork';
+import { BankingNetwork, BankItem } from './components/BankingNetwork';
+import { BankRateModal } from './components/BankRateModal';
 import { FinancialEducation } from './components/FinancialEducation';
 import { FaqSection } from './components/FaqSection';
 import { ContactSection } from './components/ContactSection';
@@ -17,6 +18,7 @@ import { BottomBankMarquee } from './components/BottomBankMarquee';
 
 export function App() {
   const [isBankingSectionVisible, setIsBankingSectionVisible] = useState(false);
+  const [selectedBank, setSelectedBank] = useState<BankItem | null>(null);
 
   useEffect(() => {
     const bankingElement = document.getElementById('banking-network');
@@ -52,14 +54,18 @@ export function App() {
         <HowItWorks />
         <AboutSection />
         <FinancialCalculators />
-        <BankingNetwork />
+        <BankingNetwork onSelectBank={setSelectedBank} />
         <FinancialEducation />
         <FaqSection />
         <ContactSection />
       </main>
       <Footer />
-      <BottomBankMarquee isVisible={!isBankingSectionVisible} />
+      <BottomBankMarquee 
+        isVisible={!isBankingSectionVisible} 
+        onSelectBank={setSelectedBank}
+      />
       <WhatsAppButton isBottomMarqueeVisible={!isBankingSectionVisible} />
+      <BankRateModal bank={selectedBank} onClose={() => setSelectedBank(null)} />
     </div>
   );
 }

@@ -1,12 +1,16 @@
 import React from 'react';
-import { banksList } from './BankingNetwork';
+import { banksList, BankItem } from './BankingNetwork';
 
 export interface BottomBankMarqueeProps {
   isVisible?: boolean;
+  onSelectBank?: (bank: BankItem) => void;
 }
 
-export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({ isVisible = true }) => {
-  // Duplicate the 11-bank list once for a 100% seamless, uninterrupted infinite CSS marquee loop
+export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({ 
+  isVisible = true,
+  onSelectBank
+}) => {
+  // Duplicate the complete 12-bank list once for a 100% seamless, uninterrupted infinite CSS marquee loop
   const marqueeItems = [...banksList, ...banksList];
 
   return (
@@ -29,9 +33,12 @@ export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({ isVisible 
       {/* Continuously moving horizontal marquee */}
       <div className="animate-bottom-marquee flex items-center gap-3 sm:gap-4 px-2">
         {marqueeItems.map((bank, index) => (
-          <div
+          <button
+            type="button"
             key={`bottom-${bank.id}-${index}`}
-            className="flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:py-1.5 bg-slate-50/90 hover:bg-emerald-50/60 rounded-full border border-slate-200/70 hover:border-emerald-200 transition-colors shrink-0 group"
+            onClick={() => onSelectBank?.(bank)}
+            className="flex items-center gap-2 sm:gap-2.5 px-3 py-1 sm:py-1.5 bg-slate-50/90 hover:bg-emerald-50/60 rounded-full border border-slate-200/70 hover:border-emerald-200 transition-colors shrink-0 group cursor-pointer focus:outline-none focus:ring-1 focus:ring-emerald-500/40 text-left"
+            aria-label={`View ${bank.name} rates`}
           >
             {/* Small Bank Logo with original aspect ratio preserved */}
             <div className="h-5 sm:h-6 w-14 sm:w-16 flex items-center justify-center shrink-0 overflow-hidden">
@@ -47,7 +54,7 @@ export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({ isVisible 
             <span className="text-[11px] sm:text-xs font-semibold text-slate-800 group-hover:text-brand-forest transition-colors whitespace-nowrap">
               {bank.name}
             </span>
-          </div>
+          </button>
         ))}
       </div>
     </aside>
