@@ -121,7 +121,7 @@ export const BankRateModal: React.FC<BankRateModalProps> = ({ bank, onClose }) =
                     {product.value}
                   </span>
                   <span className="text-[10px] font-medium text-emerald-700 uppercase">
-                    p.a.
+                    p.a. T&C*
                   </span>
                 </div>
               </div>
@@ -133,7 +133,7 @@ export const BankRateModal: React.FC<BankRateModalProps> = ({ bank, onClose }) =
         <div className="mt-6 p-3.5 rounded-2xl bg-amber-50/60 border border-amber-200/60 text-[11px] text-amber-900/90 flex items-start gap-2.5 leading-relaxed">
           <Info className="w-4 h-4 text-amber-600 shrink-0 mt-0.5" />
           <p>
-            <strong>Note:</strong> Rates are indicative starting figures subject to lender credit appraisal, applicant profile, loan tenure, collateral evaluation, and RBI policy rate shifts. Sanction rests entirely with {bank.name}.
+            *T&C apply. Interest rates are indicative and may vary based on borrower profile, eligibility, credit assessment, loan amount, tenure, lender policies and other applicable terms and conditions. Final rates and approval are subject to the respective lender's assessment and prevailing terms.
           </p>
         </div>
 

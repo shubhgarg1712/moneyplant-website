@@ -18,7 +18,25 @@ export interface WhatsAppButtonProps {
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeVisible = true }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [showCallout, setShowCallout] = useState(false);
+  const [hasBeenDismissed, setHasBeenDismissed] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
+
+  // Trigger the 5-second automatic "Get in touch 👋" callout
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowCallout(true);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
+  const handleDismissCallout = () => {
+    setShowCallout(false);
+    setHasBeenDismissed(true);
+  };
 
   // Close popup when clicking outside the widget or pressing Escape
   useEffect(() => {
@@ -31,17 +49,18 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeV
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsOpen(false);
+        handleDismissCallout();
       }
     };
 
     if (isOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('keydown', handleKeyDown);
     }
+    window.addEventListener('keydown', handleKeyDown);
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen]);
 
@@ -52,6 +71,46 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeV
         isBottomMarqueeVisible ? 'bottom-[60px] sm:bottom-[70px]' : 'bottom-4 sm:bottom-6'
       }`}
     >
+      {/* 5-Second Automatic "Get in touch 👋" Callout Bubble */}
+      {showCallout && !hasBeenDismissed && !isOpen && (
+        <div 
+          role="status"
+          aria-live="polite"
+          className="pointer-events-auto mb-2 flex items-center bg-white rounded-full pl-3.5 sm:pl-4 pr-2 py-1.5 sm:py-2 border border-slate-200/90 shadow-[0_8px_24px_rgba(0,0,0,0.12),0_2px_6px_rgba(0,0,0,0.06)] animate-in fade-in slide-in-from-bottom-2 duration-300 motion-reduce:animate-none motion-reduce:transition-none relative select-none hover:border-emerald-300 transition-colors"
+        >
+          {/* Subtle pointing notch centered toward the launcher button below */}
+          <div className="absolute -bottom-1 right-6 sm:right-7 w-2.5 h-2.5 bg-white border-b border-r border-slate-200/90 rotate-45 pointer-events-none" />
+
+          {/* Clickable Get in touch text linking directly to existing WhatsApp destination */}
+          <a
+            href={WHATSAPP_DIRECT_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => {
+              setShowCallout(false);
+              setHasBeenDismissed(true);
+            }}
+            className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-slate-800 hover:text-brand-forest transition-colors pr-2 focus:outline-none focus:underline"
+          >
+            <span>Get in touch</span>
+            <span className="text-sm sm:text-base">👋</span>
+          </a>
+
+          {/* Close / Dismiss Button "×" */}
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleDismissCallout();
+            }}
+            aria-label="Close Get in touch message"
+            className="w-5 h-5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors shrink-0 focus:outline-none focus:ring-1 focus:ring-slate-300 cursor-pointer"
+          >
+            <X className="w-3.5 h-3.5" />
+          </button>
+        </div>
+      )}
+
       {/* WhatsApp "Chat with us" Popup */}
       {isOpen && (
         <div 
@@ -96,7 +155,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeV
               type="button"
               onClick={() => setIsOpen(false)}
               aria-label="Close chat"
-              className="w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-slate-300"
+              className="w-8 h-8 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 flex items-center justify-center transition-colors shrink-0 focus:outline-none focus:ring-2 focus:ring-slate-300 cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -130,7 +189,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeV
               href={WHATSAPP_DIRECT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3.5 px-5 rounded-xl bg-[#0DC143] hover:bg-[#0bb03d] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-[#0DC143]/30"
+              className="w-full py-3.5 px-5 rounded-xl bg-[#0DC143] hover:bg-[#0bb03d] text-white font-semibold text-sm sm:text-base flex items-center justify-center gap-2.5 shadow-md hover:shadow-lg transition-all duration-200 hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus:ring-4 focus:ring-[#0DC143]/30 cursor-pointer"
             >
               <div className="w-5 h-5 rounded-full overflow-hidden shrink-0 flex items-center justify-center bg-[#0DC143]">
                 <img 
@@ -148,10 +207,16 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ isBottomMarqueeV
       {/* Floating Circular WhatsApp Launcher Button */}
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={() => {
+          setIsOpen(!isOpen);
+          if (!isOpen) {
+            setShowCallout(false);
+            setHasBeenDismissed(true);
+          }
+        }}
         aria-label={isOpen ? "Close chat" : "Chat with MoneyPlant on WhatsApp"}
         aria-expanded={isOpen}
-        className="pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-[#0DC143]/40 flex items-center justify-center bg-[#0DC143] border border-emerald-600/20"
+        className="pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-200 hover:scale-105 active:scale-95 group focus:outline-none focus:ring-4 focus:ring-[#0DC143]/40 flex items-center justify-center bg-[#0DC143] border border-emerald-600/20 cursor-pointer"
       >
         {/* Uploaded Official WhatsApp Image */}
         <img 

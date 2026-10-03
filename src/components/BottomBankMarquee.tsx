@@ -140,7 +140,7 @@ export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({
           aria-label={`${activeBank.name} quick rate preview`}
           onMouseEnter={handlePanelMouseEnter}
           onMouseLeave={handlePanelMouseLeave}
-          className="pointer-events-auto absolute bottom-[54px] sm:bottom-[60px] z-40 bg-white/98 backdrop-blur-md rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-[0_16px_36px_-6px_rgba(0,0,0,0.18),0_4px_12px_-2px_rgba(0,0,0,0.08)] animate-in fade-in slide-in-from-bottom-2 duration-200 transition-all select-none"
+          className="pointer-events-auto absolute bottom-[54px] sm:bottom-[60px] z-40 bg-white rounded-2xl p-3.5 sm:p-4 border border-slate-200/90 shadow-[0_16px_36px_-6px_rgba(0,0,0,0.18),0_4px_12px_-2px_rgba(0,0,0,0.08)] animate-in fade-in slide-in-from-bottom-2 duration-200 transition-all select-none"
           style={{
             left: `${panelLeft}px`,
             width: `${panelWidth}px`,
@@ -188,11 +188,16 @@ export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({
                 </span>
                 <span className="font-extrabold text-brand-forest shrink-0">
                   {product.value}{' '}
-                  <span className="text-[10px] font-normal text-slate-400">p.a.</span>
+                  <span className="text-[10px] font-normal text-slate-500">p.a. T&C*</span>
                 </span>
               </div>
             ))}
           </div>
+
+          {/* Compact T&C Note */}
+          <p className="text-[10px] text-slate-400 leading-tight py-1 border-t border-slate-100">
+            *T&C apply. Rates are indicative and subject to lender eligibility and prevailing terms.
+          </p>
 
           {/* Action: View Full Details */}
           <button
@@ -201,7 +206,7 @@ export const BottomBankMarquee: React.FC<BottomBankMarqueeProps> = ({
               onSelectBank?.(activeBank);
               setActiveBank(null);
             }}
-            className="w-full mt-1.5 pt-2 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-forest hover:text-emerald-700 transition-colors group/btn cursor-pointer focus:outline-none focus:ring-1 focus:ring-emerald-500/40 rounded px-1"
+            className="w-full mt-1 pt-1.5 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-brand-forest hover:text-emerald-700 transition-colors group/btn cursor-pointer focus:outline-none focus:ring-1 focus:ring-emerald-500/40 rounded px-1"
           >
             <span>View Full Details</span>
             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/btn:translate-x-1 text-brand-forest" />

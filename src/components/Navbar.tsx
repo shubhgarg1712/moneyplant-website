@@ -27,6 +27,7 @@ export const Navbar: React.FC = () => {
     { name: 'Our Services', href: '#services' },
     { name: 'Why MoneyPlant', href: '#why-us' },
     { name: 'Resources', href: '#resources' },
+    { name: 'Financial Calculators', href: '#calculators' },
     { name: 'RBI Policy Rates', href: '#rates', isRates: true },
   ];
 
